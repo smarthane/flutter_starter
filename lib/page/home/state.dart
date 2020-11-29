@@ -51,7 +51,8 @@ HomeState initState(Map<String, dynamic> args) {
     ..tabPageController = PageController()
     ..tabHomeState = initTabHomeState(null)
     ..tabProjectState = initTabProjectState(null)
-    ..tabLegendState = initTabLegendState(null);
+    ..tabLegendState = initTabLegendState(null)
+    ..tabStructureState = initTabStructureState(null);
 }
 
 /// 首页TAB连接器

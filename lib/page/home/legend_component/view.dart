@@ -22,6 +22,8 @@ import 'state.dart';
 /// 入口
 Widget buildView(
     TabLegendState state, Dispatch dispatch, ViewService viewService) {
+  /// TODO 网络请求异常 以及空处理
+
   /// 数据不为控显示数据
   if (state.treeList.isNotEmpty) {
     return Scaffold(
@@ -39,7 +41,7 @@ Widget _buildTabBar(
   var themeData = IGlobalStore.ofThemeData(viewService.context);
   return Stack(
     children: [
-      Align(
+      Container(
         child: Theme(
           data: themeData.copyWith(
             canvasColor: themeData.primaryColor,
@@ -77,7 +79,6 @@ Widget _buildTabBar(
             ),
           )),
         ),
-        alignment: Alignment(1.1, -1),
       ),
       Container(
         margin: const EdgeInsets.only(left: 0, right: 25),
@@ -110,6 +111,8 @@ Widget _buildTabBarView(
 
 Widget _buildArticleItemView(TabLegendState state, Dispatch dispatch,
     ViewService viewService, int index) {
+  /// TODO 网络请求异常 以及空处理
+
   /// 全局主题
   var themeData = IGlobalStore.ofThemeData(viewService.context);
 

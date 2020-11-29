@@ -11,12 +11,18 @@ import 'state.dart';
 Reducer<TabStructureState> buildReducer() {
   return asReducer(
     <Object, Reducer<TabStructureState>>{
-      TabStructureAction.action: _onAction,
+      TabStructureAction.R_ACTION_LOAD_STRUCTURE_CATEGORY: _onLoadStructureCategory,
+      TabStructureAction.R_ACTION_LOAD_NAVIGATION_SITE_CATEGORY: _onLoadNavigationSiteCategory,
     },
   );
 }
 
-TabStructureState _onAction(TabStructureState state, Action action) {
+TabStructureState _onLoadStructureCategory(TabStructureState state, Action action) {
+  final TabStructureState newState = state.clone();
+  return newState;
+}
+
+TabStructureState _onLoadNavigationSiteCategory(TabStructureState state, Action action) {
   final TabStructureState newState = state.clone();
   return newState;
 }

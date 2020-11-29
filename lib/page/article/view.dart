@@ -20,96 +20,38 @@ import 'state.dart';
 /// @Date: 2020/11/29
 
 Widget buildView(
-    TabProjectState state, Dispatch dispatch, ViewService viewService) {
-  /// TODO 网络请求异常 以及空处理
-
-  /// 全局主题
-  var themeData = IGlobalStore.ofThemeData(viewService.context);
-
-  /// 数据不为控显示数据
-  if (state.treeList.isNotEmpty) {
-    return Scaffold(
+    ArticleState state, Dispatch dispatch, ViewService viewService) {
+  return Scaffold(
       appBar: AppBar(
-        title: Stack(
-          children: [
-            Align(
-              child: Theme(
-                data: themeData.copyWith(
-                  canvasColor: themeData.primaryColor,
-                ),
-                child: DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                  elevation: 0,
-                  value: state.tabIndex,
-                  style: themeData.primaryTextTheme.subhead,
-                  items: List.generate(state.treeList.length, (index) {
-                    var subhead = themeData.primaryTextTheme.subhead;
-                    return DropdownMenuItem(
-                      value: index,
-                      child: Text(
-                        state.treeList[index].name,
-                        style: state.tabIndex == index
-                            ? TextStyle(
-                                fontSize: 30,
-                                color: themeData.brightness == Brightness.light
-                                    ? Colors.white
-                                    : themeData.accentColor)
-                            : subhead.apply(
-                                color: subhead.color.withAlpha(200)),
-                      ),
-                    );
-                  }),
-                  onChanged: (value) {
-                    state.tabController.animateTo(value);
-                  },
-                  isExpanded: true,
-                  icon: Container(
-                    child: Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.white,
-                    ),
-                  ),
-                )),
-              ),
-              alignment: Alignment(1.1, -1),
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: 0, right: 25),
-              color: themeData.primaryColor.withOpacity(1),
-              child: TabBar(
-                  controller: state.tabController,
-                  isScrollable: true,
-                  tabs: List.generate(
-                      state.treeList.length,
-                      (index) => Tab(
-                            text: state.treeList[index].name,
-                          ))),
-            )
-          ],
-        ),
+        centerTitle: true,
+        title: Text(state.tree.name),
+        bottom: TabBar(
+            controller: state.tabController,
+            isScrollable: true,
+            tabs: List.generate(
+                state.tree.children.length,
+                (index) => Tab(
+                      text: state.tree.children[index].name,
+                    ))),
       ),
       body: TabBarView(
         controller: state.tabController,
         children: List.generate(
-            state.treeList.length,
+            state.tree.children.length,
             (index) => KeepAliveWidget(
-                _buildTabBarView(state, dispatch, viewService, index))),
-      ),
-    );
-  } else {
-    return Center(child: CircularProgressIndicator());
-  }
+                _buildArticleItemView(state, dispatch, viewService, index))),
+      ));
 }
 
-Widget _buildTabBarView(TabProjectState state, Dispatch dispatch,
-    ViewService viewService, int index) {
+Widget _buildArticleItemView(
+    ArticleState state, Dispatch dispatch, ViewService viewService, int index) {
   /// TODO 网络请求异常 以及空处理
 
   /// 全局主题
   var themeData = IGlobalStore.ofThemeData(viewService.context);
 
-  /// TabBarViewData
-  var data = state.datas[state.cidList[index]];
+  /// ArticleItemData
+  var data = state.datas[state.idList[index]];
 
   /// 初始化加载数据
   if (data.articles.isEmpty && state.tabIndex == index) {
@@ -125,10 +67,10 @@ Widget _buildTabBarView(TabProjectState state, Dispatch dispatch,
       header: StarterRefreshHeader(),
       footer: StarterRefresherFooter(),
       onRefresh: () {
-        dispatch(TabProjectActionCreator.onEffectRefresh(index));
+        dispatch(ArticleActionCreator.onEActionRefresh(index));
       },
       onLoading: () {
-        dispatch(TabProjectActionCreator.onEffectLoad(index));
+        dispatch(ArticleActionCreator.onEActionLoad(index));
       },
       child: ListView.builder(
           itemCount: data.articles.length,
@@ -139,7 +81,7 @@ Widget _buildTabBarView(TabProjectState state, Dispatch dispatch,
                 Material(
                   child: InkWell(
                     onTap: () {
-                      dispatch(TabProjectActionCreator.onOpenWebviewPage(
+                      dispatch(ArticleActionCreator.onOpenWebviewPage(
                           article.title, article.link));
                     },
                     child: Container(

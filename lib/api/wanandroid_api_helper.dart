@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart' hide Banner;
+import 'package:flutter_starter/api/model/navigation_site_model.dart';
 import 'package:flutter_starter/api/model/tree_model.dart';
 import 'package:flutter_starter/common/http_manager.dart';
 import 'model/article_model.dart';
@@ -105,6 +106,14 @@ class WanandroidApiHelper {
     var response = await _http.get('wxarticle/list/$id/$pageNum/json');
     return response.data['datas']
         .map<Article>((item) => Article.fromMap(item))
+        .toList();
+  }
+
+  /// 导航網址
+  static Future fetchNavigationSite() async {
+    var response = await _http.get('navi/json');
+    return response.data
+        .map<NavigationSite>((item) => NavigationSite.fromMap(item))
         .toList();
   }
 }

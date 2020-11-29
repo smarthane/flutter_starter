@@ -22,6 +22,8 @@ import 'state.dart';
 
 Widget buildView(
     TabHomeState state, Dispatch dispatch, ViewService viewService) {
+  /// TODO 网络请求异常 以及空处理
+
   /// TODO 加载数据处理
 
   if (state.banners.isEmpty) {

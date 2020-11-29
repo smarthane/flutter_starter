@@ -2,6 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter_starter/app.dart';
 import 'package:flutter_starter/global_store/state.dart';
 import 'package:flutter_starter/global_store/store.dart';
+import 'package:flutter_starter/page/article/page.dart';
 import 'package:flutter_starter/page/demos/page.dart';
 import 'package:flutter_starter/page/home/page.dart';
 import 'package:flutter_starter/page/login/page.dart';
@@ -38,6 +39,9 @@ class RouteManager {
   /// 首页
   static const String homePage = 'page/home';
 
+  /// 体系--> 选择相关知识点的详情页
+  static const String articlePage = 'page/article';
+
   /// 设置页面
   static const String settingPage = 'page/setting';
 
@@ -51,6 +55,7 @@ class RouteManager {
       RouteManager.loginPage: LoginPage(),
       RouteManager.registerPage: RegisterPage(),
       RouteManager.homePage: HomePage(),
+      RouteManager.articlePage: ArticlePage(),
       RouteManager.settingPage: SettingPage()
     },
     visitor: (String path, Page<Object, dynamic> page) {
