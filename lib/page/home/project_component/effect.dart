@@ -85,8 +85,12 @@ void _onRefresh(Action action, Context<TabProjectState> ctx) {
       var result = response.data['datas']
           .map<Article>((item) => Article.fromMap(item))
           .toList();
-      data.articles = result;
-      data.setSuccess();
+      if (result.isEmpty) {
+        data.setEmpty();
+      } else {
+        data.articles = result;
+        data.setSuccess();
+      }
       ctx.dispatch(TabProjectActionCreator.onReducerRefresh());
     } else {
       data.setError();

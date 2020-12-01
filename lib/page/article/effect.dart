@@ -68,8 +68,12 @@ void _onRefresh(Action action, Context<ArticleState> ctx) {
       var result = response.data['datas']
           .map<Article>((item) => Article.fromMap(item))
           .toList();
-      item.articles = result;
-      item.setSuccess();
+      if (result.isEmpty) {
+        item.setEmpty();
+      } else {
+        item.articles = result;
+        item.setSuccess();
+      }
       ctx.dispatch(ArticleActionCreator.onRActionRefresh());
     } else {
       item.setError();

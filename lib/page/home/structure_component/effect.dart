@@ -66,8 +66,12 @@ void _onLoadStructureCategory(Action action, Context<TabStructureState> ctx) {
     if (response.code == WanandroidResponse.SUCCESS_CODE) {
       var result =
           response.data.map<Tree>((item) => Tree.fromJsonMap(item)).toList();
-      ctx.state.treeList = result;
-      ctx.state.treeViewStateMode.setSuccess();
+      if (result.isEmpty) {
+        ctx.state.treeViewStateMode.setEmpty();
+      } else {
+        ctx.state.treeList = result;
+        ctx.state.treeViewStateMode.setSuccess();
+      }
     } else {
       ctx.state.treeViewStateMode.setError();
     }
@@ -83,8 +87,12 @@ void _onLoadNavigationSiteCategory(
       var result = response.data
           .map<NavigationSite>((item) => NavigationSite.fromMap(item))
           .toList();
-      ctx.state.navigationSiteList = result;
-      ctx.state.siteViewStateMode.setSuccess();
+      if (result.isEmpty) {
+        ctx.state.siteViewStateMode.setEmpty();
+      } else {
+        ctx.state.navigationSiteList = result;
+        ctx.state.siteViewStateMode.setSuccess();
+      }
     } else {
       ctx.state.siteViewStateMode.setError();
     }

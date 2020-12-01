@@ -127,6 +127,13 @@ Widget _buildTabBarView(TabProjectState state, Dispatch dispatch,
   /// TabBarViewData
   var data = state.datas[state.cidList[index]];
 
+  /// 网络请求成功返回空列表
+  if (data.isEmpty) {
+    return ViewStateEmptyWidget(onPressed: () {
+      dispatch(TabProjectActionCreator.onEffectRefresh(index));
+    });
+  }
+
   /// 初始化加载数据
   if (data.articles.isEmpty && state.tabIndex == index) {
     if (data.isError) {

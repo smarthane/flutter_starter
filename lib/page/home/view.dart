@@ -331,13 +331,13 @@ Widget _drawerWidget(
                           !state.store.themeModel.darkMode));
                     }),
               ),
-              ListTile(
+              /*ListTile(
                   title: Text(S.of(viewService.context).versionUpdate),
                   onTap: () {},
                   leading: Icon(
                     Icons.system_update,
                     color: accentColor,
-                  )),
+                  )),*/
               ListTile(
                   title: Text(S.of(viewService.context).demos),
                   onTap: () {

@@ -82,6 +82,21 @@ Widget buildView(
             Material(
               color: state.store.themeModel.themeData.cardColor,
               child: ListTile(
+                title: Text(S.of(viewService.context).versionUpdate),
+                onTap: () {},
+                leading: Icon(
+                  Icons.system_update,
+                  color: accentColor,
+                ),
+                trailing: Icon(Icons.chevron_right),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Material(
+              color: state.store.themeModel.themeData.cardColor,
+              child: ListTile(
                 title: Text(S.of(viewService.context).aboutme),
                 onTap: () {},
                 leading: Icon(

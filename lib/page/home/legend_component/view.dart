@@ -134,6 +134,13 @@ Widget _buildArticleItemView(TabLegendState state, Dispatch dispatch,
   /// TabBarViewItemData
   var data = state.datas[state.idList[index]];
 
+  /// 网络请求成功返回空列表
+  if (data.isEmpty) {
+    return ViewStateEmptyWidget(onPressed: () {
+      dispatch(TabLegendActionCreator.onEffectRefresh(index));
+    });
+  }
+
   /// 初始化加载数据
   if (data.articles.isEmpty && state.currentTabIndex == index) {
     if (data.isError) {

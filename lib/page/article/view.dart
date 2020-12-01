@@ -54,6 +54,13 @@ Widget _buildArticleItemView(
   /// ArticleItemData
   var data = state.datas[state.idList[index]];
 
+  /// 网络请求成功返回空列表
+  if (data.isEmpty) {
+    return ViewStateEmptyWidget(onPressed: () {
+      dispatch(ArticleActionCreator.onEActionRefresh(index));
+    });
+  }
+
   /// 初始化加载数据
   if (data.articles.isEmpty && state.tabIndex == index) {
     if (data.isError) {
