@@ -17,6 +17,9 @@ enum GlobalAction {
 
   /// 切换字体库
   SWITCH_FONT_FAMILY,
+
+  /// 切换字体库
+  UPDATE_USER_INFO,
 }
 
 class GlobalActionCreator {
@@ -34,5 +37,9 @@ class GlobalActionCreator {
 
   static Action onSwitchFontFamily(Object payload) {
     return Action(GlobalAction.SWITCH_FONT_FAMILY, payload: payload);
+  }
+
+  static Action onUpdateUserInfo(Object payload) {
+    return Action(GlobalAction.UPDATE_USER_INFO, payload: payload);
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_starter/common/resource_mananger.dart';
 import 'package:flutter_starter/generated/l10n.dart';
+import 'package:flutter_starter/page/common/common_view_state_widget.dart';
 import 'package:flutter_starter/page/login/action.dart';
 import 'package:flutter_starter/util/toast_utils.dart';
 import 'package:flutter_starter/widget/widget_bottom_clipper.dart';
@@ -15,6 +16,10 @@ import 'state.dart';
 /// @GitHub: https://github.com/smarthane
 /// @Description:
 /// @Date: 2020/11/29
+///
+/// 账号：
+/// zkbbk
+/// 123456
 
 Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
   return Scaffold(
@@ -88,6 +93,7 @@ Widget _buildLoginLogo(
 Widget _buildLoginFormContainer(
     LoginState state, Dispatch dispatch, ViewService viewService) {
   ThemeData themeData = state.store.themeModel.themeData;
+  final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -101,56 +107,68 @@ Widget _buildLoginFormContainer(
               blurRadius: 10.0,
               spreadRadius: 3.0),
         ]),
-    child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          LoginTextField(
-            label: S.of(viewService.context).userName,
-            icon: Icons.perm_identity,
-            controller: state.nameController,
-            textInputAction: TextInputAction.next,
-            onFieldSubmitted: (text) {
-              FocusScope.of(viewService.context).requestFocus(state.pwdFocus);
-            },
-          ),
-          LoginTextField(
-            label: S.of(viewService.context).password,
-            icon: Icons.lock_outline,
-            controller: state.passwordController,
-            obscureText: true,
-            focusNode: state.pwdFocus,
-            textInputAction: TextInputAction.done,
-          ),
-          Padding(
-              padding: const EdgeInsets.fromLTRB(15, 40, 15, 20),
-              child: CupertinoButton(
-                padding: EdgeInsets.all(0),
-                color: themeData.primaryColor.withAlpha(180),
-                disabledColor: themeData.primaryColor.withAlpha(180),
-                borderRadius: BorderRadius.circular(110),
-                pressedOpacity: 0.5,
-                child: Text(
-                  S.of(viewService.context).signIn,
-                  style:
-                      themeData.accentTextTheme.title.copyWith(wordSpacing: 6),
-                ),
-                onPressed: () {},
-              )),
-          Center(
-            child: Text.rich(
-                TextSpan(text: S.of(viewService.context).noAccount, children: [
-              TextSpan(
-                  text: S.of(viewService.context).toSignUp,
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () async {
-                      // 将注册成功的用户名,回填如登录框
-                      dispatch(LoginActionCreator.onStartRegisterPage());
+    child: Form(
+      key: _loginFormKey,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <
+          Widget>[
+        LoginTextField(
+          label: S.of(viewService.context).userName,
+          icon: Icons.perm_identity,
+          controller: state.nameController,
+          textInputAction: TextInputAction.next,
+          onFieldSubmitted: (text) {
+            FocusScope.of(viewService.context).requestFocus(state.pwdFocus);
+          },
+        ),
+        LoginTextField(
+          label: S.of(viewService.context).password,
+          icon: Icons.lock_outline,
+          controller: state.passwordController,
+          obscureText: true,
+          focusNode: state.pwdFocus,
+          textInputAction: TextInputAction.done,
+        ),
+        Padding(
+            padding: const EdgeInsets.fromLTRB(15, 40, 15, 20),
+            child: CupertinoButton(
+              padding: EdgeInsets.all(0),
+              color: themeData.primaryColor.withAlpha(180),
+              disabledColor: themeData.primaryColor.withAlpha(180),
+              borderRadius: BorderRadius.circular(110),
+              pressedOpacity: 0.5,
+              child: state.viewStateModel.isLoad
+                  ? ButtonProgressIndicator()
+                  : Text(
+                      S.of(viewService.context).signIn,
+                      style: themeData.accentTextTheme.title
+                          .copyWith(wordSpacing: 6),
+                    ),
+              onPressed: state.viewStateModel.isLoad
+                  ? null
+                  : () {
+                      if (_loginFormKey.currentState.validate()) {
+                        dispatch(LoginActionCreator.onEffectLogin(
+                            state.nameController.text,
+                            state.passwordController.text));
+                      }
                     },
-                  style: TextStyle(
-                      color: Theme.of(viewService.context).accentColor))
-            ])),
-          )
-        ]),
+            )),
+        Center(
+          child: Text.rich(
+              TextSpan(text: S.of(viewService.context).noAccount, children: [
+            TextSpan(
+                text: S.of(viewService.context).toSignUp,
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () async {
+                    // 将注册成功的用户名,回填如登录框
+                    dispatch(LoginActionCreator.onStartRegisterPage());
+                  },
+                style:
+                    TextStyle(color: Theme.of(viewService.context).accentColor))
+          ])),
+        )
+      ]),
+    ),
   );
 }
 

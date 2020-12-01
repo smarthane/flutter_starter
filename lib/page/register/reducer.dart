@@ -11,12 +11,12 @@ import 'state.dart';
 Reducer<RegisterState> buildReducer() {
   return asReducer(
     <Object, Reducer<RegisterState>>{
-      RegisterAction.action: _onAction,
+      RegisterAction.REDUCER_ON_REGISTER: _onRegister,
     },
   );
 }
 
-RegisterState _onAction(RegisterState state, Action action) {
+RegisterState _onRegister(RegisterState state, Action action) {
   final RegisterState newState = state.clone();
   return newState;
 }

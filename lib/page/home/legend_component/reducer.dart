@@ -11,14 +11,14 @@ import 'state.dart';
 Reducer<TabLegendState> buildReducer() {
   return asReducer(
     <Object, Reducer<TabLegendState>>{
-      TabLegendAction.ACTION_TAB_DATA: _onTabDataAction,
+      TabLegendAction.REDUCER_ON_LOAD_TAB_DATA: _onReduceTabData,
       TabLegendAction.REDUCER_ON_REFRESH: _onRefresh,
       TabLegendAction.REDUCER_ON_LOAD: _onLoad,
     },
   );
 }
 
-TabLegendState _onTabDataAction(TabLegendState state, Action action) {
+TabLegendState _onReduceTabData(TabLegendState state, Action action) {
   final TabLegendState newState = state.clone();
   return newState;
 }

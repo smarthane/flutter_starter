@@ -22,6 +22,7 @@ Reducer<GlobalState> buildReducer() {
       GlobalAction.SWITCH_DARK_MODE: _onSwitchDarkMode,
       GlobalAction.SWITCH_FONT_FAMILY: _onSwitchFontFamily,
       GlobalAction.SWITCH_LOCALE: _onSwitchLocale,
+      GlobalAction.UPDATE_USER_INFO: _onUpdateUserInfo,
     },
   );
 }
@@ -80,5 +81,10 @@ GlobalState _onSwitchLocale(GlobalState state, Action action) {
   }
   StorageManager.sharedPreferences
       .setInt(Constants.KEY_THEME_LOCALE_INDEX, action.payload["index"]);
+  return newState;
+}
+
+GlobalState _onUpdateUserInfo(GlobalState state, Action action) {
+  final GlobalState newState = state.clone();
   return newState;
 }

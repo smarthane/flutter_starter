@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_starter/api/model/article_model.dart';
 import 'package:flutter_starter/global_store/store.dart';
 import 'package:flutter_starter/page/common/common_article_skeleton.dart';
+import 'package:flutter_starter/page/common/common_view_state_widget.dart';
 import 'package:flutter_starter/util/object_utils.dart';
 import 'package:flutter_starter/widget/widget_image_wrapper.dart';
 import 'package:flutter_starter/widget/widget_keepalive_wrapper.dart';
@@ -21,13 +22,30 @@ import 'state.dart';
 
 Widget buildView(
     TabProjectState state, Dispatch dispatch, ViewService viewService) {
-  /// TODO 网络请求异常 以及空处理
 
-  /// 全局主题
-  var themeData = IGlobalStore.ofThemeData(viewService.context);
+  /// 网络请求加载数据中
+  if (state.tabViewStateModel.isLoad) {
+    return ViewStateLoadWidget();
+  }
+
+  /// 网络请求异常
+  if (state.tabViewStateModel.isError) {
+    return ViewStateWidget(onPressed: () {
+      dispatch(TabProjectActionCreator.onEffectLoadTabData());
+    });
+  }
+
+  /// 网络请求成功返回空列表
+  if (state.tabViewStateModel.isEmpty) {
+    return ViewStateEmptyWidget(onPressed: () {
+      dispatch(TabProjectActionCreator.onEffectLoadTabData());
+    });
+  }
 
   /// 数据不为控显示数据
-  if (state.treeList.isNotEmpty) {
+  if (state.tabViewStateModel.isSuccess) {
+    /// 全局主题
+    var themeData = IGlobalStore.ofThemeData(viewService.context);
     return Scaffold(
       appBar: AppBar(
         title: Stack(
@@ -96,8 +114,6 @@ Widget buildView(
                 _buildTabBarView(state, dispatch, viewService, index))),
       ),
     );
-  } else {
-    return Center(child: CircularProgressIndicator());
   }
 }
 
@@ -113,6 +129,11 @@ Widget _buildTabBarView(TabProjectState state, Dispatch dispatch,
 
   /// 初始化加载数据
   if (data.articles.isEmpty && state.tabIndex == index) {
+    if (data.isError) {
+      return ViewStateWidget(onPressed: () {
+        dispatch(TabProjectActionCreator.onEffectRefresh(index));
+      });
+    }
     return SkeletonList(
       builder: (context, index) => ArticleSkeletonItem(),
     );

@@ -26,6 +26,9 @@ class Constants {
   /// 是否使用Webview plugin
   static const KEY_USE_WEBVIEW_PLUGIN = 'key_use_webview_plugin';
 
+  /// 存储用户信息的键值
+  static const KEY_USER_INFO = 'key_user_info';
+
   /// 提供的字体库列表
   static const fontValueList = ['system', 'happy', 'butter'];
 

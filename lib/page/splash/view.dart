@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/common/resource_mananger.dart';
 import 'package:flutter_starter/generated/l10n.dart';
+import 'package:lottie/lottie.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -23,20 +26,25 @@ Widget buildView(
                     ? 'splash_bg.png'
                     : 'splash_bg_dark.png'),
             fit: BoxFit.fill),
-        AnimatedFlutterLogo(
-          animation: state.animation,
-        ),
-        Align(
-          alignment: Alignment(0.0, 0.7),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              AnimatedAndroidLogo(
-                animation: state.animation,
-              ),
-            ],
-          ),
-        ),
+        Lottie.asset(
+            state.randomAnimFile
+                ? 'assets/animations/21372-launch-yourself.json'
+                : 'assets/animations/39701-robot-bot-3d.json',
+            alignment: Alignment(0.0, 0.7)),
+//        AnimatedFlutterLogo(
+//          animation: state.animation,
+//        ),
+//        Align(
+//          alignment: Alignment(0.0, 0.7),
+//          child: Row(
+//            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//            children: <Widget>[
+//              AnimatedAndroidLogo(
+//                animation: state.animation,
+//              ),
+//            ],
+//          ),
+//        ),
         Align(
           alignment: Alignment.bottomRight,
           child: SafeArea(

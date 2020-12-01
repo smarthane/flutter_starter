@@ -7,16 +7,14 @@ import 'package:fish_redux/fish_redux.dart';
 
 enum TabLegendAction {
   /// 加载TAB数据
-  ACTION_TAB_DATA,
-
+  EFFECT_ON_LOAD_TAB_DATA,
+  REDUCER_ON_LOAD_TAB_DATA,
   /// 下拉刷新
   EFFECT_ON_REFRESH,
   REDUCER_ON_REFRESH,
-
   /// 加载数据
   EFFECT_ON_LOAD,
   REDUCER_ON_LOAD,
-
   /// 打开webview页面
   OPEN_WEBVIEW_PAGE,
 }
@@ -27,8 +25,12 @@ class TabLegendActionCreator {
         payload: {"title": title, "url": url});
   }
 
-  static Action onTabDataAction() {
-    return const Action(TabLegendAction.ACTION_TAB_DATA);
+  static Action onReduceLoadTabData() {
+    return const Action(TabLegendAction.REDUCER_ON_LOAD_TAB_DATA);
+  }
+
+  static Action onEffectLoadTabData() {
+    return const Action(TabLegendAction.EFFECT_ON_LOAD_TAB_DATA);
   }
 
   static Action onEffectRefresh(int index) {

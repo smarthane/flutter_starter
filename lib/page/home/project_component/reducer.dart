@@ -11,10 +11,9 @@ import 'state.dart';
 Reducer<TabProjectState> buildReducer() {
   return asReducer(
     <Object, Reducer<TabProjectState>>{
-      TabProjectAction.ACTION_TAB_DATA: _onTabDataAction,
+      TabProjectAction.REDUCER_ON_LOAD_TAB_DATA: _onTabDataAction,
       TabProjectAction.REDUCER_ON_REFRESH: _onRefresh,
       TabProjectAction.REDUCER_ON_LOAD: _onLoad,
-      TabProjectAction.action: _onAction,
     },
   );
 }
@@ -32,11 +31,6 @@ TabProjectState _onRefresh(TabProjectState state, Action action) {
 
 TabProjectState _onLoad(TabProjectState state, Action action) {
   _tabBarViewData(state, action).refreshController.loadComplete();
-  final TabProjectState newState = state.clone();
-  return newState;
-}
-
-TabProjectState _onAction(TabProjectState state, Action action) {
   final TabProjectState newState = state.clone();
   return newState;
 }

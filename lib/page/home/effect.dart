@@ -1,5 +1,9 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
+import 'package:flutter_starter/api/wanandroid_api_helper.dart';
+import 'package:flutter_starter/common/app_manager.dart';
+import 'package:flutter_starter/common/storage_manager.dart';
 import 'package:flutter_starter/global_store/action.dart';
 import 'package:flutter_starter/global_store/store.dart';
 import 'package:flutter_starter/route/route.dart';
@@ -21,6 +25,7 @@ Effect<HomeState> buildEffect() {
     HomeAction.SWITCH_FONT_FAMILY: _switchFontFamily,
     HomeAction.SWITCH_LOCALE: _switchLocale,
     HomeAction.START_LOGIN_PAGE: _startLoginPage,
+    HomeAction.ACTION_LOGOUT: _logout,
     HomeAction.START_DEMOS_PAGE: _startDemosPage,
     HomeAction.START_SETTING_PAGE: _startSettingPage,
   });
@@ -77,4 +82,14 @@ void _startDemosPage(Action action, Context<HomeState> ctx) {
 ///打开设置页面
 void _startSettingPage(Action action, Context<HomeState> ctx) {
   Navigator.pushNamed(ctx.context, RouteManager.settingPage);
+}
+
+///退出登录
+void _logout(Action action, Context<HomeState> ctx) {
+  /// BotToast.showLoading();
+  WanandroidApiHelper.logout().then((response) {
+    ctx.state.store.userModel.user = null;
+    StorageManager.localStorage.deleteItem(Constants.KEY_USER_INFO);
+    GlobalStore.store.dispatch(GlobalActionCreator.onUpdateUserInfo(true));
+  });
 }

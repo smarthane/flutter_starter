@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_starter/api/model/article_model.dart';
 import 'package:flutter_starter/global_store/store.dart';
 import 'package:flutter_starter/page/common/common_article_skeleton.dart';
+import 'package:flutter_starter/page/common/common_view_state_widget.dart';
 import 'package:flutter_starter/util/object_utils.dart';
 import 'package:flutter_starter/widget/widget_image_wrapper.dart';
 import 'package:flutter_starter/widget/widget_keepalive_wrapper.dart';
@@ -55,6 +56,11 @@ Widget _buildArticleItemView(
 
   /// 初始化加载数据
   if (data.articles.isEmpty && state.tabIndex == index) {
+    if (data.isError) {
+      return ViewStateWidget(onPressed: () {
+        dispatch(ArticleActionCreator.onEActionRefresh(index));
+      });
+    }
     return SkeletonList(
       builder: (context, index) => ArticleSkeletonItem(),
     );

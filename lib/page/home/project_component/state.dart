@@ -11,6 +11,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 /// @Date: 2020/11/29
 
 class TabProjectState implements Cloneable<TabProjectState> {
+  ViewStateModel tabViewStateModel;
+
   List<Tree> treeList;
   TabController tabController;
   int tabIndex;
@@ -26,7 +28,8 @@ class TabProjectState implements Cloneable<TabProjectState> {
       ..cidList = cidList
       ..tabIndex = tabIndex
       ..datas = datas
-      ..tabController = tabController;
+      ..tabController = tabController
+      ..tabViewStateModel = tabViewStateModel;
   }
 }
 
@@ -35,7 +38,8 @@ TabProjectState initTabProjectState(Map<String, dynamic> args) {
     ..tabIndex = 0
     ..treeList = []
     ..cidList = []
-    ..datas = Map.identity();
+    ..datas = Map.identity()
+    ..tabViewStateModel = ViewStateModel(requestState: RequestState.load);
 }
 
 class TabBarViewData extends ViewStateModel

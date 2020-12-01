@@ -82,6 +82,9 @@ class RouteManager {
               if ((p.store.localeModel != appState.store.localeModel)) {
                 newState.store.localeModel = appState.store.localeModel;
               }
+              if ((p.store.userModel != appState.store.userModel)) {
+                newState.store.userModel = appState.store.userModel;
+              }
 
               /// 下列一系列对比...
             }

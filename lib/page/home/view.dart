@@ -84,6 +84,20 @@ Widget _bodyWidget(HomeState state, Dispatch dispatch) {
   );
 }
 
+Widget _buildLogoutWidget(
+    HomeState state, Dispatch dispatch, ViewService viewService) {
+  if (state.store.userModel.user != null) {
+    return IconButton(
+      tooltip: S.of(viewService.context).logout,
+      icon: Icon(Icons.exit_to_app),
+      onPressed: () {
+        dispatch(HomeActionCreator.logout());
+      },
+    );
+  }
+  return SizedBox.shrink();
+}
+
 Widget _drawerWidget(
     HomeState state, Dispatch dispatch, ViewService viewService) {
   var accentColor = state.store.themeModel.themeData.accentColor;
@@ -94,43 +108,54 @@ Widget _drawerWidget(
       slivers: <Widget>[
         SliverAppBar(
           leading: Icon(null),
-          actions: <Widget>[new Container()],
+          actions: <Widget>[_buildLogoutWidget(state, dispatch, viewService)],
           backgroundColor: primaryColor,
           expandedHeight: 130 + MediaQuery.of(viewService.context).padding.top,
           pinned: false,
-          flexibleSpace: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                InkWell(
-                  child: Hero(
-                    tag: 'loginLogo',
-                    child: ClipOval(
-                      child: Image.asset(
-                          ResourceHelper.wrapAssets('user_avatar.png'),
-                          fit: BoxFit.cover,
-                          width: 80,
-                          height: 80,
-                          color: accentColor,
-                          // https://api.flutter.dev/flutter/dart-ui/BlendMode-class.html
-                          colorBlendMode: BlendMode.lighten),
-                    ),
-                  ),
-                  onTap: () {
+          flexibleSpace: InkWell(
+            onTap: state.store.userModel.user != null
+                ? null
+                : () {
                     // 关闭抽屉
                     Navigator.pop(viewService.context);
                     // 跳转到登录 页面
                     dispatch(HomeActionCreator.startLoginPage());
                   },
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text(
-                    S.of(viewService.context).toSignIn,
-                    style: state.store.themeModel.themeData.textTheme.caption,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  InkWell(
+                    child: Hero(
+                      tag: 'loginLogo',
+                      child: ClipOval(
+                        child: Image.asset(
+                            ResourceHelper.wrapAssets('user_avatar.png'),
+                            fit: BoxFit.cover,
+                            width: 80,
+                            height: 80,
+                            color: accentColor,
+                            // https://api.flutter.dev/flutter/dart-ui/BlendMode-class.html
+                            colorBlendMode: BlendMode.lighten),
+                      ),
+                    ),
                   ),
-                )
-              ]),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Column(children: <Widget>[
+                    Text(
+                        state.store.userModel.user != null
+                            ? state.store.userModel.user.nickname
+                            : S.of(viewService.context).toSignIn,
+                        style:
+                            state.store.themeModel.themeData.textTheme.caption),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ])
+                ]),
+          ),
         ),
         ListTileTheme(
           //textColor: state.store.theme.themeData().primaryColor,

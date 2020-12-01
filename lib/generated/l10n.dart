@@ -355,6 +355,16 @@ class S {
     );
   }
 
+  /// `logout`
+  String get logout {
+    return Intl.message(
+      'logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign In`
   String get signIn {
     return Intl.message(
@@ -480,6 +490,16 @@ class S {
     return Intl.message(
       'FeedBack',
       name: 'feedback',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About Me`
+  String get aboutme {
+    return Intl.message(
+      'About Me',
+      name: 'aboutme',
       desc: '',
       args: [],
     );

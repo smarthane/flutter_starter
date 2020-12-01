@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/cupertino.dart' hide Action;
 import 'package:flutter/material.dart' hide Action;
+import 'package:flutter_starter/api/model/user_model.dart';
 import 'package:flutter_starter/common/app_manager.dart';
 import 'package:flutter_starter/common/storage_manager.dart';
 
@@ -28,13 +29,15 @@ class GlobalState implements GlobalBaseState, Cloneable<GlobalState> {
 GlobalState initState() {
   final _themeModel = new GlobalThemeModel();
   final _localeModel = new GlobalLocaleModel();
+  final _userModel = new GlobalUserModel();
   final _storeModel = new StoreModel(
 
       /// store这个变量,在这必须示例化,不然引用该变量中的字段,会报空指针
       /// 下面的字段,赋初值,就是初始时展示的全局状态
       /// 这地方初值,理应从缓存或数据库中取,表明用户选择的全局状态
       themeModel: _themeModel,
-      localeModel: _localeModel);
+      localeModel: _localeModel,
+      userModel: _userModel);
   return GlobalState()..store = _storeModel;
 }
 
@@ -47,7 +50,10 @@ class StoreModel {
   /// 国际化i18n
   GlobalLocaleModel localeModel;
 
-  StoreModel({this.themeModel, this.localeModel});
+  /// 用户全局信息
+  GlobalUserModel userModel;
+
+  StoreModel({this.themeModel, this.localeModel, this.userModel});
 }
 
 /// 全局语言环境实体
@@ -171,5 +177,15 @@ class GlobalThemeModel {
       ),
     );
     return themeData;
+  }
+}
+
+/// 全局用户信息实体
+class GlobalUserModel {
+  User user;
+
+  GlobalUserModel() {
+    var userMap = StorageManager.localStorage.getItem(Constants.KEY_USER_INFO);
+    user = userMap != null ? User.fromJsonMap(userMap) : null;
   }
 }

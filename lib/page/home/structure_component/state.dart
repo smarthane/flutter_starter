@@ -2,6 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/api/model/navigation_site_model.dart';
 import 'package:flutter_starter/api/model/tree_model.dart';
+import 'package:flutter_starter/common/http_manager.dart';
 
 /// @Author: smarthane
 /// @GitHub: https://github.com/smarthane
@@ -16,6 +17,9 @@ class TabStructureState implements Cloneable<TabStructureState> {
   List<Tree> treeList;
   List<NavigationSite> navigationSiteList;
 
+  ViewStateModel treeViewStateMode;
+  ViewStateModel siteViewStateMode;
+
   @override
   TabStructureState clone() {
     return TabStructureState()
@@ -23,7 +27,9 @@ class TabStructureState implements Cloneable<TabStructureState> {
       ..treeList = treeList
       ..navigationSiteList = navigationSiteList
       ..currentTabIndex = currentTabIndex
-      ..tabController = tabController;
+      ..tabController = tabController
+      ..treeViewStateMode = treeViewStateMode
+      ..siteViewStateMode = siteViewStateMode;
   }
 }
 
@@ -32,5 +38,7 @@ TabStructureState initTabStructureState(Map<String, dynamic> args) {
     ..tabs = ['体系', '导航']
     ..treeList = []
     ..navigationSiteList = []
-    ..currentTabIndex = 0;
+    ..currentTabIndex = 0
+    ..treeViewStateMode = new ViewStateModel()
+    ..siteViewStateMode = new ViewStateModel();
 }

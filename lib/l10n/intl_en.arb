@@ -31,6 +31,7 @@
   "rePassword": "Confirm Password",
   "twoPwdDifferent": "The two passwords differ",
   "toSignIn": "Sign In",
+  "logout": "logout",
   "signIn": "Sign In",
   "noAccount": "No Account ? ",
   "signIn3thd": "More",
@@ -43,5 +44,6 @@
   "refresh": "refresh",
   "demos": "Demos",
   "rate": "Rate",
-  "feedback": "FeedBack"
+  "feedback": "FeedBack",
+  "aboutme": "About Me"
 }

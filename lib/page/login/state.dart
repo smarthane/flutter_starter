@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/common/http_manager.dart';
 import 'package:flutter_starter/global_store/state.dart';
 
 /// @Author: smarthane
@@ -8,6 +9,9 @@ import 'package:flutter_starter/global_store/state.dart';
 /// @Date: 2020/11/29
 
 class LoginState implements Cloneable<LoginState>, GlobalBaseState {
+
+  ViewStateModel viewStateModel;
+
   TextEditingController nameController;
   TextEditingController passwordController;
   FocusNode pwdFocus;
@@ -18,7 +22,8 @@ class LoginState implements Cloneable<LoginState>, GlobalBaseState {
       ..store = store
       ..nameController = nameController
       ..passwordController = passwordController
-      ..pwdFocus = pwdFocus;
+      ..pwdFocus = pwdFocus
+      ..viewStateModel = viewStateModel;
   }
 
   @override
@@ -29,5 +34,6 @@ LoginState initState(Map<String, dynamic> args) {
   return LoginState()
     ..pwdFocus = FocusNode()
     ..passwordController = TextEditingController()
-    ..nameController = TextEditingController();
+    ..nameController = TextEditingController()
+    ..viewStateModel = ViewStateModel();
 }

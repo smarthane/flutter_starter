@@ -31,6 +31,7 @@
   "rePassword": "确认密码",
   "twoPwdDifferent": "两次密码不一致",
   "toSignIn": "点我登录",
+  "logout": "退出登录",
   "signIn": "登录",
   "noAccount": "还没账号? ",
   "signIn3thd": "第三方登录",
@@ -43,5 +44,6 @@
   "refresh": "刷新",
   "demos": "开发示例",
   "rate": "给我评分",
-  "feedback": "意见反馈"
+  "feedback": "意见反馈",
+  "aboutme": "关于我"
 }

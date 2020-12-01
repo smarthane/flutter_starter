@@ -25,6 +25,9 @@ enum HomeAction {
   /// 登录页面
   START_LOGIN_PAGE,
 
+  /// 退出登录
+  ACTION_LOGOUT,
+
   /// TAB页面跳转
   JUMP_TAB_PAGE,
 
@@ -58,6 +61,10 @@ class HomeActionCreator {
 
   static Action startLoginPage() {
     return const Action(HomeAction.START_LOGIN_PAGE);
+  }
+
+  static Action logout() {
+    return const Action(HomeAction.ACTION_LOGOUT);
   }
 
   static Action startDemosPage() {

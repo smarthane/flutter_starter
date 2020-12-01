@@ -5,11 +5,16 @@ import 'package:fish_redux/fish_redux.dart';
 /// @Description:
 /// @Date: 2020/11/29
 
-enum LoginAction { DO_LOGIN, START_REGISTER_PAGE }
+enum LoginAction { EFFECT_ON_LOGIN, REDUCER_ON_LOGIN, START_REGISTER_PAGE }
 
 class LoginActionCreator {
-  static Action onDoLogin() {
-    return const Action(LoginAction.DO_LOGIN);
+  static Action onEffectLogin(String username, String password) {
+    var payload = {"username": username, "password": password};
+    return Action(LoginAction.EFFECT_ON_LOGIN, payload: payload);
+  }
+
+  static Action onReducerLogin() {
+    return const Action(LoginAction.REDUCER_ON_LOGIN);
   }
 
   static Action onStartRegisterPage() {

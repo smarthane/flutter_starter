@@ -10,11 +10,13 @@ import 'state.dart';
 
 Reducer<LoginState> buildReducer() {
   return asReducer(
-    <Object, Reducer<LoginState>>{},
+    <Object, Reducer<LoginState>>{
+      LoginAction.REDUCER_ON_LOGIN: _onLogin,
+    },
   );
 }
 
-LoginState _onAction(LoginState state, Action action) {
+LoginState _onLogin(LoginState state, Action action) {
   final LoginState newState = state.clone();
   return newState;
 }

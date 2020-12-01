@@ -1,5 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
+import 'package:flutter_starter/api/model/navigation_site_model.dart';
+import 'package:flutter_starter/api/model/tree_model.dart';
 import 'package:flutter_starter/api/wanandroid_api_helper.dart';
 import 'package:flutter_starter/page/home/structure_component/component.dart';
 import 'package:flutter_starter/route/route.dart';
@@ -33,11 +35,15 @@ void _onInitState(Action action, Context<TabStructureState> ctx) {
         if (ctx.state.treeList.isEmpty) {
           ctx.dispatch(
               TabStructureActionCreator.onEActionLoadStructureCategory());
+          ctx.dispatch(
+              TabStructureActionCreator.onRActionLoadStructureCategory());
         }
       } else if (tabIndex == 1) {
         if (ctx.state.navigationSiteList.isEmpty) {
           ctx.dispatch(
               TabStructureActionCreator.onEActionLoadNavigationSiteCategory());
+          ctx.dispatch(
+              TabStructureActionCreator.onRActionLoadNavigationSiteCategory());
         }
       }
     }
@@ -55,16 +61,33 @@ void _onDidChangeDependencies(Action action, Context<TabStructureState> ctx) {}
 void _onDispose(Action action, Context<TabStructureState> ctx) {}
 
 void _onLoadStructureCategory(Action action, Context<TabStructureState> ctx) {
-  WanandroidApiHelper.fetchTreeCategories().then((result) {
-    ctx.state.treeList = result;
+  ctx.state.treeViewStateMode.setLoad();
+  WanandroidApiHelper.fetchTreeCategories().then((response) {
+    if (response.code == WanandroidResponse.SUCCESS_CODE) {
+      var result =
+          response.data.map<Tree>((item) => Tree.fromJsonMap(item)).toList();
+      ctx.state.treeList = result;
+      ctx.state.treeViewStateMode.setSuccess();
+    } else {
+      ctx.state.treeViewStateMode.setError();
+    }
     ctx.dispatch(TabStructureActionCreator.onRActionLoadStructureCategory());
   });
 }
 
 void _onLoadNavigationSiteCategory(
     Action action, Context<TabStructureState> ctx) {
-  WanandroidApiHelper.fetchNavigationSite().then((result) {
-    ctx.state.navigationSiteList = result;
+  ctx.state.siteViewStateMode.setLoad();
+  WanandroidApiHelper.fetchNavigationSite().then((response) {
+    if (response.code == WanandroidResponse.SUCCESS_CODE) {
+      var result = response.data
+          .map<NavigationSite>((item) => NavigationSite.fromMap(item))
+          .toList();
+      ctx.state.navigationSiteList = result;
+      ctx.state.siteViewStateMode.setSuccess();
+    } else {
+      ctx.state.siteViewStateMode.setError();
+    }
     ctx.dispatch(
         TabStructureActionCreator.onRActionLoadNavigationSiteCategory());
   });

@@ -6,19 +6,17 @@ import 'package:fish_redux/fish_redux.dart';
 /// @Date: 2020/11/29
 
 enum TabProjectAction {
-  ACTION_TAB_DATA,
-
+  /// 加载TAB数据
+  EFFECT_ON_LOAD_TAB_DATA,
+  REDUCER_ON_LOAD_TAB_DATA,
   /// 下拉刷新
   EFFECT_ON_REFRESH,
   REDUCER_ON_REFRESH,
-
   /// 加载数据
   EFFECT_ON_LOAD,
   REDUCER_ON_LOAD,
-
   /// 打开webview页面
   OPEN_WEBVIEW_PAGE,
-  action
 }
 
 class TabProjectActionCreator {
@@ -27,8 +25,12 @@ class TabProjectActionCreator {
         payload: {"title": title, "url": url});
   }
 
-  static Action onTabDataAction() {
-    return const Action(TabProjectAction.ACTION_TAB_DATA);
+  static Action onReduceLoadTabData() {
+    return const Action(TabProjectAction.REDUCER_ON_LOAD_TAB_DATA);
+  }
+
+  static Action onEffectLoadTabData() {
+    return const Action(TabProjectAction.EFFECT_ON_LOAD_TAB_DATA);
   }
 
   static Action onEffectRefresh(int index) {
@@ -47,7 +49,4 @@ class TabProjectActionCreator {
     return const Action(TabProjectAction.REDUCER_ON_LOAD);
   }
 
-  static Action onAction() {
-    return const Action(TabProjectAction.action);
-  }
 }

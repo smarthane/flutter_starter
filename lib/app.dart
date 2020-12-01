@@ -44,34 +44,35 @@ AppState initState(Map<String, dynamic> args) {
 Widget buildView(AppState state, Dispatch dispatch, ViewService viewService) {
   return MaterialApp(
     title: "",
-    // 初始化BotToast
+    /// 初始化BotToast
     builder: BotToastInit(),
     navigatorObservers: [BotToastNavigatorObserver()],
-    // 作为默认页面
+    /// 作为默认页面
     home: RouteManager.routes.buildPage(RouteManager.splashPage, null),
-    // 主题 包括颜色 字体 黑夜模式
+    /// 主题 包括颜色 字体 黑夜模式
     theme: state.store.themeModel.themeData,
-    // 路由
+    /// 路由
     onGenerateRoute: (RouteSettings settings) {
-      // 无页面切换动画
+      /// 无页面切换动画
       if (settings.name == RouteManager.appPage ||
           settings.name == RouteManager.splashPage ||
           settings.name == RouteManager.webViewPage) {
         return NoAnimRouteBuilder(
             RouteManager.routes.buildPage(settings.name, settings.arguments));
       } else {
-        // ios页面切换风格
+        /// ios页面切换风格
         return CupertinoPageRoute(builder: (BuildContext context) {
           return RouteManager.routes
               .buildPage(settings.name, settings.arguments);
         });
       }
     },
-    // 国际化
+    /// 国际化
     locale: state.store.localeModel.locale,
     localizationsDelegates: const [
       S.delegate,
-      RefreshLocalizations.delegate, //下拉刷新
+      // 下拉刷新
+      RefreshLocalizations.delegate,
       GlobalMaterialLocalizations.delegate,
       GlobalCupertinoLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate

@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/common/resource_mananger.dart';
 import 'package:flutter_starter/generated/l10n.dart';
+import 'package:flutter_starter/page/common/common_view_state_widget.dart';
+import 'package:flutter_starter/page/register/action.dart';
 import 'package:flutter_starter/widget/widget_bottom_clipper.dart';
 import 'package:flutter_starter/widget/widget_login_field.dart';
 
@@ -85,6 +87,7 @@ Widget _buildRegisterLogo(
 Widget _buildRegisterFormContainer(
     RegisterState state, Dispatch dispatch, ViewService viewService) {
   ThemeData themeData = state.store.themeModel.themeData;
+  final GlobalKey<FormState> _registerFormKey = GlobalKey<FormState>();
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -98,49 +101,63 @@ Widget _buildRegisterFormContainer(
               blurRadius: 10.0,
               spreadRadius: 3.0),
         ]),
-    child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          LoginTextField(
-            label: S.of(viewService.context).userName,
-            icon: Icons.person_outline,
-            controller: state.nameController,
-            textInputAction: TextInputAction.next,
-          ),
-          LoginTextField(
-            label: S.of(viewService.context).password,
-            icon: Icons.lock_outline,
-            obscureText: true,
-            controller: state.passwordController,
-            textInputAction: TextInputAction.next,
-          ),
-          LoginTextField(
-            label: S.of(viewService.context).rePassword,
-            icon: Icons.lock_outline,
-            obscureText: true,
-            controller: state.rePasswordController,
-            textInputAction: TextInputAction.done,
-            validator: (value) {
-              return value != state.passwordController.text
-                  ? S.of(viewService.context).twoPwdDifferent
-                  : null;
-            },
-          ),
-          Padding(
-              padding: const EdgeInsets.fromLTRB(15, 40, 15, 20),
-              child: CupertinoButton(
-                padding: EdgeInsets.all(0),
-                color: themeData.primaryColor.withAlpha(180),
-                disabledColor: themeData.primaryColor.withAlpha(180),
-                borderRadius: BorderRadius.circular(110),
-                pressedOpacity: 0.5,
-                child: Text(
-                  S.of(viewService.context).signUp,
-                  style:
-                      themeData.accentTextTheme.title.copyWith(wordSpacing: 6),
-                ),
-                onPressed: () {},
-              )),
-        ]),
+    child: Form(
+      key: _registerFormKey,
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            LoginTextField(
+              label: S.of(viewService.context).userName,
+              icon: Icons.person_outline,
+              controller: state.nameController,
+              textInputAction: TextInputAction.next,
+            ),
+            LoginTextField(
+              label: S.of(viewService.context).password,
+              icon: Icons.lock_outline,
+              obscureText: true,
+              controller: state.passwordController,
+              textInputAction: TextInputAction.next,
+            ),
+            LoginTextField(
+              label: S.of(viewService.context).rePassword,
+              icon: Icons.lock_outline,
+              obscureText: true,
+              controller: state.rePasswordController,
+              textInputAction: TextInputAction.done,
+              validator: (value) {
+                return value != state.passwordController.text
+                    ? S.of(viewService.context).twoPwdDifferent
+                    : null;
+              },
+            ),
+            Padding(
+                padding: const EdgeInsets.fromLTRB(15, 40, 15, 20),
+                child: CupertinoButton(
+                  padding: EdgeInsets.all(0),
+                  color: themeData.primaryColor.withAlpha(180),
+                  disabledColor: themeData.primaryColor.withAlpha(180),
+                  borderRadius: BorderRadius.circular(110),
+                  pressedOpacity: 0.5,
+                  child: state.viewStateModel.isLoad
+                      ? ButtonProgressIndicator()
+                      : Text(
+                          S.of(viewService.context).signUp,
+                          style: themeData.accentTextTheme.title
+                              .copyWith(wordSpacing: 6),
+                        ),
+                  onPressed: state.viewStateModel.isLoad
+                      ? null
+                      : () {
+                          if (_registerFormKey.currentState.validate()) {
+                            dispatch(RegisterActionCreator.onEffectRegister(
+                                state.nameController.text,
+                                state.passwordController.text,
+                                state.rePasswordController.text));
+                          }
+                        },
+                )),
+          ]),
+    ),
   );
 }

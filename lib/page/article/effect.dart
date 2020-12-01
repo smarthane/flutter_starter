@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
+import 'package:flutter_starter/api/model/article_model.dart';
 import 'package:flutter_starter/api/wanandroid_api_helper.dart';
 import 'package:flutter_starter/page/article/page.dart';
 import 'package:flutter_starter/route/route.dart';
@@ -61,9 +62,19 @@ void _onRefresh(Action action, Context<ArticleState> ctx) {
   var id = ctx.state.idList[index];
   ArticleItemData item = ctx.state.datas[id];
   item.pageNum = ArticleItemData.pageNumFirst;
-  WanandroidApiHelper.fetchArticles(item.pageNum, cid: id).then((result) {
-    item.articles = result;
-    ctx.dispatch(ArticleActionCreator.onRActionRefresh());
+  item.setLoad();
+  WanandroidApiHelper.fetchArticles(item.pageNum, cid: id).then((response) {
+    if (response.code == WanandroidResponse.SUCCESS_CODE) {
+      var result = response.data['datas']
+          .map<Article>((item) => Article.fromMap(item))
+          .toList();
+      item.articles = result;
+      item.setSuccess();
+      ctx.dispatch(ArticleActionCreator.onRActionRefresh());
+    } else {
+      item.setError();
+      ctx.dispatch(ArticleActionCreator.onRActionRefresh());
+    }
   });
 }
 
@@ -73,10 +84,20 @@ void _onLoad(Action action, Context<ArticleState> ctx) {
   int id = ctx.state.idList[index];
   ArticleItemData data = ctx.state.datas[id];
   data.pageNum += 1;
+  data.setLoad();
   WanandroidApiHelper.fetchArticles(data.pageNum, cid: id)
-      .then((result) {
-    data.articles.addAll(result);
-    ctx.dispatch(ArticleActionCreator.onRActionLoad());
+      .then((response) {
+    if (response.code == WanandroidResponse.SUCCESS_CODE) {
+      var result = response.data['datas']
+          .map<Article>((item) => Article.fromMap(item))
+          .toList();
+      data.articles.addAll(result);
+      data.setSuccess();
+      ctx.dispatch(ArticleActionCreator.onRActionLoad());
+    } else {
+      data.setError();
+      ctx.dispatch(ArticleActionCreator.onRActionLoad());
+    }
   });
 }
 

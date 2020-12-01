@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "aboutme" : MessageLookupByLibrary.simpleMessage("关于我"),
     "actionCancel" : MessageLookupByLibrary.simpleMessage("取消"),
     "actionConfirm" : MessageLookupByLibrary.simpleMessage("确认"),
     "appName" : MessageLookupByLibrary.simpleMessage("FlutterStarter"),
@@ -33,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fontButter" : MessageLookupByLibrary.simpleMessage("黄油字体"),
     "fontHappy" : MessageLookupByLibrary.simpleMessage("快乐字体"),
     "fontSystem" : MessageLookupByLibrary.simpleMessage("跟随系统"),
+    "logout" : MessageLookupByLibrary.simpleMessage("退出登录"),
     "noAccount" : MessageLookupByLibrary.simpleMessage("还没账号? "),
     "openBrowser" : MessageLookupByLibrary.simpleMessage("浏览器打开"),
     "password" : MessageLookupByLibrary.simpleMessage("密码"),

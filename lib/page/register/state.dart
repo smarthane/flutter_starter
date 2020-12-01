@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/common/http_manager.dart';
 import 'package:flutter_starter/global_store/state.dart';
 
 /// @Author: smarthane
@@ -8,6 +9,8 @@ import 'package:flutter_starter/global_store/state.dart';
 /// @Date: 2020/11/29
 
 class RegisterState implements Cloneable<RegisterState>, GlobalBaseState {
+  ViewStateModel viewStateModel;
+
   TextEditingController nameController;
   TextEditingController passwordController;
   TextEditingController rePasswordController;
@@ -18,7 +21,8 @@ class RegisterState implements Cloneable<RegisterState>, GlobalBaseState {
       ..store = store
       ..nameController = nameController
       ..passwordController = passwordController
-      ..rePasswordController = rePasswordController;
+      ..rePasswordController = rePasswordController
+      ..viewStateModel = viewStateModel;
   }
 
   @override
@@ -29,5 +33,6 @@ RegisterState initState(Map<String, dynamic> args) {
   return RegisterState()
     ..nameController = TextEditingController()
     ..passwordController = TextEditingController()
-    ..rePasswordController = TextEditingController();
+    ..rePasswordController = TextEditingController()
+    ..viewStateModel = ViewStateModel();
 }
