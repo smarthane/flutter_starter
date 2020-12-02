@@ -1,4 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/material.dart' hide Action, Page;
 import 'package:flutter_starter/app.dart';
 import 'package:flutter_starter/global_store/state.dart';
 import 'package:flutter_starter/global_store/store.dart';
@@ -10,17 +11,18 @@ import 'package:flutter_starter/page/register/page.dart';
 import 'package:flutter_starter/page/setting/page.dart';
 import 'package:flutter_starter/page/splash/page.dart';
 import 'package:flutter_starter/page/web/page.dart';
+import 'package:flutter_starter/util/log_utils.dart';
 
 /// @Author: smarthane
 /// @GitHub: https://github.com/smarthane
-/// @Description: 路由管理
+/// @Description: 路由管理 AOP middleware 页面生命周期
 /// @Date: 2020/11/29
 
 class RouteManager {
-  /// 定义路由名称
+  /// 0.定义路由名称
   /// 启动 application
   static const String appPage = 'page/app';
-
+  /// /////////////////////////////////////////////////////////////////////
   /// Webview
   static const String webViewPage = 'page/webView';
 
@@ -44,9 +46,11 @@ class RouteManager {
 
   /// 设置页面
   static const String settingPage = 'page/setting';
+  /// /////////////////////////////////////////////////////////////////////
 
   static final AbstractRoutes routes = PageRoutes(
     pages: <String, Page<Object, dynamic>>{
+      /// /////////////////////////////////////////////////////////////////////
       ///将路由名称和页面映射在一起
       RouteManager.appPage: AppPage(),
       RouteManager.webViewPage: WebviewPage(),
@@ -57,9 +61,12 @@ class RouteManager {
       RouteManager.homePage: HomePage(),
       RouteManager.articlePage: ArticlePage(),
       RouteManager.settingPage: SettingPage()
+      /// /////////////////////////////////////////////////////////////////////
     },
     visitor: (String path, Page<Object, dynamic> page) {
-      ///全局状态管理
+      /// 1.全局状态管理
+      /// 只有特定的范围的 Page 才需要建立和 AppStore 的连接关系
+      /// 满足 Page<T> ，T 是 GlobalBaseState 的子类
       if (page.isTypeof<GlobalBaseState>()) {
         ///建立AppStore驱动PageStore的单向数据连接
         ///参数1 AppStore
@@ -95,6 +102,75 @@ class RouteManager {
           return pageState;
         });
       }
+
+      /// 2.AOP
+      /// 页面可以有一些私有的 AOP 的增强， 但往往会有一些 AOP 是整个应用下，所有页面都会有的。
+      /// 这些公共的通用 AOP ，通过遍历路由页面的形式统一加入。
+      page.enhancer.append(
+        /// View AOP
+        viewMiddleware: <ViewMiddleware<dynamic>>[
+          safetyView<dynamic>(),
+        ],
+
+        /// Adapter AOP
+        adapterMiddleware: <AdapterMiddleware<dynamic>>[
+          safetyAdapter<dynamic>()
+        ],
+
+        /// Effect AOP
+        effectMiddleware: <EffectMiddleware<dynamic>>[
+          _pageAnalyticsMiddleware<dynamic>(),
+        ],
+
+        /// Store AOP
+        middleware: <Middleware<dynamic>>[
+          logMiddleware<dynamic>(tag: page.runtimeType.toString()),
+        ],
+      );
     },
   );
+}
+
+/// 简单的 Effect AOP
+/// 只针对页面的生命周期进行打印
+EffectMiddleware<T> _pageAnalyticsMiddleware<T>({String tag = 'fish redux --> '}) {
+  return (AbstractLogic<dynamic> logic, Store<T> store) {
+    return (Effect<dynamic> effect) {
+      return (Action action, Context<dynamic> ctx) {
+        if (logic is Page<dynamic, dynamic> && action.type is Lifecycle) {
+          /// 页面的生命周期
+          LogUtils.v('${logic.runtimeType} ${action.type.toString()} ', tag: tag);
+        }
+        return effect?.call(action, ctx);
+      };
+    };
+  };
+}
+
+/// Navigatior 页面跳转
+/// 通过这种方式不用传context也可以进行页面跳转 如做一个全局拦截的页面跳转
+/// 推送等相关页面
+/// 调用示例：FsNavigatorObserver.fsNavigator.pushNamed(RouteManager.loginPage);
+class FsNavigatorObserver extends NavigatorObserver {
+  FsNavigatorObserver._();
+
+  static FsNavigatorObserver _instance;
+
+  static FsNavigatorObserver get instance {
+    if (_instance == null) {
+      _instance = FsNavigatorObserver._();
+    }
+
+    return _instance;
+  }
+
+  static OverlayState get fsOverlay {
+    return FsNavigatorObserver.instance.navigator.overlay;
+  }
+
+  static NavigatorState get fsNavigator {
+    return FsNavigatorObserver.instance.navigator;
+  }
+
+  factory FsNavigatorObserver() => instance;
 }

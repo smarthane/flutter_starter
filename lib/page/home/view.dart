@@ -23,6 +23,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
     S.of(viewService.context).tabLegend,
   ];
   state.tabTitles = titles;
+  var themeData = state.store.themeModel.themeData;
   return Scaffold(
       appBar: AppBar(
         title: Text(state.tabTitles[state.tabSelectedIndex]),
@@ -43,6 +44,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
         child: _bodyWidget(state, dispatch),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: themeData.accentColor,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -134,7 +136,11 @@ Widget _drawerWidget(
                             fit: BoxFit.cover,
                             width: 80,
                             height: 80,
-                            color: accentColor,
+                            color:
+                                state.store.themeModel.themeData.brightness ==
+                                        Brightness.dark
+                                    ? primaryColor
+                                    : accentColor,
                             // https://api.flutter.dev/flutter/dart-ui/BlendMode-class.html
                             colorBlendMode: BlendMode.lighten),
                       ),
@@ -148,8 +154,12 @@ Widget _drawerWidget(
                         state.store.userModel.user != null
                             ? state.store.userModel.user.nickname
                             : S.of(viewService.context).toSignIn,
-                        style:
-                            state.store.themeModel.themeData.textTheme.caption),
+                        style: TextStyle(
+                          color: state.store.themeModel.themeData.brightness ==
+                                  Brightness.dark
+                              ? accentColor
+                              : Colors.white,
+                        )),
                     SizedBox(
                       height: 10,
                     ),
@@ -267,7 +277,7 @@ Widget _drawerWidget(
                       spacing: 5,
                       runSpacing: 5,
                       children: <Widget>[
-                        ...Colors.primaries.map((color) {
+                        ...Constants.colors.map((color) {
                           return Material(
                             color: color,
                             child: InkWell(
@@ -324,8 +334,7 @@ Widget _drawerWidget(
                 ),
                 trailing: CupertinoSwitch(
                     activeColor: accentColor,
-                    value: state.store.themeModel.themeData.brightness ==
-                        Brightness.dark,
+                    value: state.store.themeModel.darkMode,
                     onChanged: (value) {
                       dispatch(HomeActionCreator.switchDarkMode(
                           !state.store.themeModel.darkMode));

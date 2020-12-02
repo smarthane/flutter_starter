@@ -84,6 +84,9 @@ dependencies:
   # lottie动画
   # https://github.com/xvrh/lottie-flutter
   lottie: ^0.7.0+1
+  # A cross platform plugin for displaying local notifications.
+  # https://github.com/MaikuB/flutter_local_notifications
+  flutter_local_notifications: ^3.0.1+6
 
 dev_dependencies:
   flutter_test:

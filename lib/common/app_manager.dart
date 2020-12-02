@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_starter/generated/l10n.dart';
 
 /// @Author: smarthane
 /// @GitHub: https://github.com/smarthane
 /// @Description:
 /// @Date: 2020/11/29
-
 
 /// 全局配置
 class Config {}
@@ -62,4 +62,42 @@ class Constants {
         return '';
     }
   }
+
+  /// 纯白色主题
+  static const MaterialColor WHITE = MaterialColor(0xFFFFFFFF, <int, Color>{
+    50: Color(0xFFFFF0F5),
+    100: Color(0xFFFFFFF0),
+    200: Color(0xFFE6E6FA),
+    300: Color(0xFFF0F8FF),
+    400: Color(0xFFF0FFFF),
+    500: Color(0xFFFFFAF0),
+    600: Color(0xFFF5F5F5),
+    700: Color(0xFFF8F8FF),
+    800: Color(0xFFFFFAFA),
+    900: Color(0xFFFFFFFF),
+  });
+
+  /// 纯黑色主题
+  static const MaterialColor BLACK = MaterialColor(0xFF000000, <int, Color>{
+    50: Colors.black12,
+    100: Colors.black12,
+    200: Colors.black12,
+    300: Colors.black12,
+    400: Colors.black26,
+    500: Colors.black38,
+    600: Colors.black45,
+    700: Colors.black54,
+    800: Colors.black87,
+    900: Colors.black,
+  });
+
+  /// 主题颜色库
+  static List<MaterialColor> colors = []
+    ..addAll(Colors.primaries)
+
+    /// 纯白色主题
+    ..add(WHITE)
+
+    /// 纯黑色主题
+    ..add(BLACK);
 }

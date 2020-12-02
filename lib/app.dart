@@ -12,7 +12,7 @@ import 'generated/l10n.dart';
 
 /// @Author: smarthane
 /// @GitHub: https://github.com/smarthane
-/// @Description:
+/// @Description: application
 /// @Date: 2020/11/29
 
 /// effect
@@ -36,8 +36,22 @@ class AppState implements Cloneable<AppState>, GlobalBaseState {
   StoreModel store;
 }
 
+/// init state
 AppState initState(Map<String, dynamic> args) {
   return AppState();
+}
+
+/// page
+class AppPage extends Page<AppState, Map<String, dynamic>> {
+  AppPage()
+      : super(
+          initState: initState,
+          effect: buildEffect(),
+          view: buildView,
+          dependencies: Dependencies<AppState>(
+              adapter: null, slots: <String, Dependent<AppState>>{}),
+          middleware: <Middleware<AppState>>[],
+        );
 }
 
 /// view
@@ -46,7 +60,7 @@ Widget buildView(AppState state, Dispatch dispatch, ViewService viewService) {
     title: "",
     /// 初始化BotToast
     builder: BotToastInit(),
-    navigatorObservers: [BotToastNavigatorObserver()],
+    navigatorObservers: [BotToastNavigatorObserver(), FsNavigatorObserver()],
     /// 作为默认页面
     home: RouteManager.routes.buildPage(RouteManager.splashPage, null),
     /// 主题 包括颜色 字体 黑夜模式
@@ -79,17 +93,4 @@ Widget buildView(AppState state, Dispatch dispatch, ViewService viewService) {
     ],
     supportedLocales: S.delegate.supportedLocales,
   );
-}
-
-/// page
-class AppPage extends Page<AppState, Map<String, dynamic>> {
-  AppPage()
-      : super(
-          initState: initState,
-          effect: buildEffect(),
-          view: buildView,
-          dependencies: Dependencies<AppState>(
-              adapter: null, slots: <String, Dependent<AppState>>{}),
-          middleware: <Middleware<AppState>>[],
-        );
 }

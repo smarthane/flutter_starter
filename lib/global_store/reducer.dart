@@ -30,12 +30,12 @@ Reducer<GlobalState> buildReducer() {
 GlobalState _onSwitchTheme(GlobalState state, Action action) {
   var index = 0;
   if (action.payload["themeColor"] == null) {
-    index = new Random().nextInt(Colors.primaries.length - 1);
+    index = new Random().nextInt(Constants.colors.length - 1);
   } else {
-    index = Colors.primaries.indexOf(action.payload["themeColor"]);
+    index = Constants.colors.indexOf(action.payload["themeColor"]);
   }
   final GlobalState newState = state.clone();
-  newState.store.themeModel.themeColor = Colors.primaries[index];
+  newState.store.themeModel.themeColor = Constants.colors[index];
   newState.store.themeModel.themeData =
       newState.store.themeModel.generateThemeData();
   IGlobalStore.of(action.payload["context"]).globalState.clone()

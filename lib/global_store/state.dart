@@ -98,7 +98,7 @@ class GlobalThemeModel {
         false;
 
     /// 获取主题色
-    themeColor = Colors.primaries[StorageManager.sharedPreferences
+    themeColor = Constants.colors[StorageManager.sharedPreferences
             .getInt(Constants.KEY_THEME_MATERIAL_COLOR) ??
         5];
 
@@ -117,6 +117,17 @@ class GlobalThemeModel {
   /// 黑夜模式用 primaryColor
   /// 保留黑夜模式之前的颜色用 accentColor
   ThemeData generateThemeData({bool platformDarkMode: false}) {
+    if (themeColor == Constants.WHITE) {
+      return _handleWhiteTheme(platformDarkMode: platformDarkMode);
+    } else if (themeColor == Constants.BLACK) {
+      return _handleBlackTheme(platformDarkMode: platformDarkMode);
+    } else {
+      return _handleCommonTheme(platformDarkMode: platformDarkMode);
+    }
+  }
+
+  /// 处理黑白色之外的material主题
+  ThemeData _handleCommonTheme({bool platformDarkMode: false}) {
     var isDark = platformDarkMode || darkMode;
     Brightness brightness = isDark ? Brightness.dark : Brightness.light;
 
@@ -176,6 +187,30 @@ class GlobalThemeModel {
             borderSide: BorderSide(width: 0.5, color: themeData.disabledColor)),
       ),
     );
+    return themeData;
+  }
+
+  /// 专门处理白色主题
+  ThemeData _handleWhiteTheme({bool platformDarkMode: false}) {
+    var isDark = platformDarkMode || darkMode;
+    Brightness brightness = isDark ? Brightness.dark : Brightness.light;
+    var accentColor = isDark ? themeColor : Constants.BLACK[700];
+    var themeData = ThemeData(
+        brightness: brightness,
+        primarySwatch: themeColor,
+        accentColor: accentColor,
+        fontFamily: Constants.fontValueList[fontIndex]);
+    return themeData;
+  }
+
+  /// 专门处理黑色主题
+  ThemeData _handleBlackTheme({bool platformDarkMode: false}) {
+    var isDark = platformDarkMode || darkMode;
+    Brightness brightness = isDark ? Brightness.dark : Brightness.light;
+    var themeData = ThemeData(
+        brightness: brightness,
+        primarySwatch: themeColor,
+        fontFamily: Constants.fontValueList[fontIndex]);
     return themeData;
   }
 }

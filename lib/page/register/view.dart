@@ -22,6 +22,7 @@ Widget buildView(
       physics: ClampingScrollPhysics(),
       slivers: <Widget>[
         SliverAppBar(
+          title: Text(S.of(viewService.context).signUp),
           floating: true,
         ),
         SliverToBoxAdapter(
@@ -52,7 +53,7 @@ Widget _buildRegisterTopPanel(
     clipper: BottomClipper(),
     child: Container(
       height: 220,
-      color: state.store.themeModel.themeData.primaryColor,
+      color: state.store.themeModel.themeData.accentColor,
     ),
   );
 }
@@ -73,7 +74,7 @@ Widget _buildRegisterLogo(
               height: 100,
               fit: BoxFit.fitWidth,
               color: themeData.brightness == Brightness.dark
-                  ? themeData.accentColor
+                  ? themeData.primaryColor
                   : Colors.white,
               // https://api.flutter.dev/flutter/dart-ui/BlendMode-class.html
               colorBlendMode: BlendMode.srcIn),
@@ -96,7 +97,7 @@ Widget _buildRegisterFormContainer(
         color: themeData.cardColor,
         shadows: [
           BoxShadow(
-              color: themeData.primaryColor.withAlpha(20),
+              color: themeData.accentColor.withAlpha(20),
               offset: Offset(1.0, 1.0),
               blurRadius: 10.0,
               spreadRadius: 3.0),
@@ -135,8 +136,8 @@ Widget _buildRegisterFormContainer(
                 padding: const EdgeInsets.fromLTRB(15, 40, 15, 20),
                 child: CupertinoButton(
                   padding: EdgeInsets.all(0),
-                  color: themeData.primaryColor.withAlpha(180),
-                  disabledColor: themeData.primaryColor.withAlpha(180),
+                  color: themeData.accentColor.withAlpha(180),
+                  disabledColor: themeData.accentColor.withAlpha(180),
                   borderRadius: BorderRadius.circular(110),
                   pressedOpacity: 0.5,
                   child: state.viewStateModel.isLoad

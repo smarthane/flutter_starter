@@ -18,7 +18,7 @@ class WanandroidApiHelper {
     baseUrl: "https://www.wanandroid.com/",
     responseParse: _parseResponse,
   )
-
+    /// 这边可以根据项目具体的业务逻辑可以做一些请求拦截过虑等
     /// cookie持久化 异步
     ..client.interceptors.add(CookieManager(
         PersistCookieJar(dir: StorageManager.temporaryDirectory.path)));
@@ -26,7 +26,8 @@ class WanandroidApiHelper {
   /// 解析http请求返回的数据
   static Future<WanandroidResponse> _parseResponse(Response response) {
     WanandroidResponse respData = WanandroidResponse.fromJson(response.data);
-
+    /// 此处可以根据具体项目 接口返回逻辑 可以全局的做一些拦截校验 抛异常或者跳转到页面
+    /// eg: throw HttpError or FsNavigatorObserver.fsNavigator
     /// 需要登录时 抛异常处理
     if (respData.code == -1001) {
       /// 用于未登录等权限不够,需要跳转授权页面
@@ -35,7 +36,7 @@ class WanandroidApiHelper {
     return Future.value(respData);
   }
 
-  /// 网络请求异常处理
+  /// 统一包装 网络请求异常的返回
   static Future _handlerError(HttpError httpError) {
     ToastUtils.showText(httpError.toString());
     return Future.value(WanandroidResponse(
