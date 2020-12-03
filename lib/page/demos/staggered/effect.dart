@@ -7,10 +7,10 @@ import 'state.dart';
 /// @Description:
 /// @Date: 2020/11/29
 
-Effect<DemosState> buildEffect() {
-  return combineEffects(<Object, Effect<DemosState>>{
+Effect<StaggeredState> buildEffect() {
+  return combineEffects(<Object, Effect<StaggeredState>>{
   });
 }
 
-void _onAction(Action action, Context<DemosState> ctx) {
+void _onAction(Action action, Context<StaggeredState> ctx) {
 }

@@ -4,7 +4,9 @@ import 'package:flutter_starter/app.dart';
 import 'package:flutter_starter/global_store/state.dart';
 import 'package:flutter_starter/global_store/store.dart';
 import 'package:flutter_starter/page/article/page.dart';
+import 'package:flutter_starter/page/demos/bottoast/page.dart';
 import 'package:flutter_starter/page/demos/page.dart';
+import 'package:flutter_starter/page/demos/staggered/page.dart';
 import 'package:flutter_starter/page/home/page.dart';
 import 'package:flutter_starter/page/login/page.dart';
 import 'package:flutter_starter/page/register/page.dart';
@@ -26,9 +28,6 @@ class RouteManager {
   /// Webview
   static const String webViewPage = 'page/webView';
 
-  /// Demos 开发示例
-  static const String demosPage = 'page/demos';
-
   /// splash 启动页面
   static const String splashPage = 'page/splash';
 
@@ -46,6 +45,14 @@ class RouteManager {
 
   /// 设置页面
   static const String settingPage = 'page/setting';
+
+  /// Demos 开发示例
+  static const String demosPage = 'page/demos';
+
+  /// Demos 开发示例 瀑布流
+  static const String demoStaggeredPage = 'page/demo/staggered';
+  /// Demos 开发示例 Toast
+  static const String demoToastPage = 'page/demo/toast';
   /// /////////////////////////////////////////////////////////////////////
 
   static final AbstractRoutes routes = PageRoutes(
@@ -54,13 +61,16 @@ class RouteManager {
       ///将路由名称和页面映射在一起
       RouteManager.appPage: AppPage(),
       RouteManager.webViewPage: WebviewPage(),
-      RouteManager.demosPage: DemosPage(),
       RouteManager.splashPage: SplashPage(),
       RouteManager.loginPage: LoginPage(),
       RouteManager.registerPage: RegisterPage(),
       RouteManager.homePage: HomePage(),
       RouteManager.articlePage: ArticlePage(),
-      RouteManager.settingPage: SettingPage()
+      RouteManager.settingPage: SettingPage(),
+      ///常用开发示例代码
+      RouteManager.demosPage: DemosPage(),
+      RouteManager.demoStaggeredPage: StaggeredPage(),
+      RouteManager.demoToastPage: BotToastPage(),
       /// /////////////////////////////////////////////////////////////////////
     },
     visitor: (String path, Page<Object, dynamic> page) {

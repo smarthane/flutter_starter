@@ -5,17 +5,17 @@ import 'package:fish_redux/fish_redux.dart';
 /// @Description:
 /// @Date: 2020/11/29
 
-enum DemosAction {
+enum StaggeredAction {
   REDUCER_ON_REFRESH,
   REDUCER_ON_LOAD,
 }
 
-class DemosActionCreator {
+class StaggeredActionCreator {
   static Action onReducerRefresh() {
-    return const Action(DemosAction.REDUCER_ON_REFRESH);
+    return const Action(StaggeredAction.REDUCER_ON_REFRESH);
   }
 
   static Action onReducerLoad() {
-    return const Action(DemosAction.REDUCER_ON_LOAD);
+    return const Action(StaggeredAction.REDUCER_ON_LOAD);
   }
 }

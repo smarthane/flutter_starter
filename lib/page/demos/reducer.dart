@@ -11,12 +11,20 @@ import 'state.dart';
 Reducer<DemosState> buildReducer() {
   return asReducer(
     <Object, Reducer<DemosState>>{
-      DemosAction.action: _onAction,
+      DemosAction.REDUCER_ON_REFRESH: _onRefresh,
+      DemosAction.REDUCER_ON_LOAD: _onLoad,
     },
   );
 }
 
-DemosState _onAction(DemosState state, Action action) {
+DemosState _onRefresh(DemosState state, Action action) {
+  state.refreshController.refreshCompleted();
+  final DemosState newState = state.clone();
+  return newState;
+}
+
+DemosState _onLoad(DemosState state, Action action) {
+  state.refreshController.loadComplete();
   final DemosState newState = state.clone();
   return newState;
 }

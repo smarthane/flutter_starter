@@ -119,7 +119,7 @@ Widget _drawerWidget(
                 ? null
                 : () {
                     // 关闭抽屉
-                    Navigator.pop(viewService.context);
+                    // Navigator.pop(viewService.context);
                     // 跳转到登录 页面
                     dispatch(HomeActionCreator.startLoginPage());
                   },
@@ -155,8 +155,10 @@ Widget _drawerWidget(
                             ? state.store.userModel.user.nickname
                             : S.of(viewService.context).toSignIn,
                         style: TextStyle(
-                          color: state.store.themeModel.themeData.brightness ==
-                                  Brightness.dark
+                          color: (state.store.themeModel.themeData.brightness ==
+                                      Brightness.dark ||
+                                  state.store.themeModel.themeColor ==
+                                      Constants.WHITE)
                               ? accentColor
                               : Colors.white,
                         )),
