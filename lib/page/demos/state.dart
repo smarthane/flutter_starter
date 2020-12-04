@@ -55,14 +55,26 @@ List<DemoItemModel> _initDemoList() {
 
   itemList.add(DemoItemModel(
       imageUrl:ResourceHelper.wrapAssets("demo_bottoast_icon.png"),
+      title: "基础组件",
+      subTitle: "Flutter Components",
+      pageRoute: RouteManager.demoBaseComponentsPage));
+
+  itemList.add(DemoItemModel(
+      imageUrl:ResourceHelper.wrapAssets("demo_bottoast_icon.png"),
       title: "Toast",
       subTitle: "Bot Toast",
       pageRoute: RouteManager.demoToastPage));
 
   itemList.add(DemoItemModel(
+      imageUrl:ResourceHelper.wrapAssets("demo_citypicker_icon.png"),
+      title: "城市选择",
+      subTitle: "City Pickers",
+      pageRoute: RouteManager.demoCityPickersPage));
+
+  itemList.add(DemoItemModel(
       imageUrl:ResourceHelper.wrapAssets("demo_staggered_icon.png"),
       title: "瀑布流",
-      subTitle: "Staggered GridView",
+      subTitle: "Staggered",
       pageRoute: RouteManager.demoStaggeredPage));
 
   return itemList;

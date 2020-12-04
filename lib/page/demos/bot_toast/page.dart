@@ -1,4 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/material.dart' hide Action, Page;
 
 import 'effect.dart';
 import 'reducer.dart';
@@ -23,5 +24,9 @@ class BotToastPage extends Page<BotToastState, Map<String, dynamic>> {
                 }),
             middleware: <Middleware<BotToastState>>[
             ],);
-
+  @override
+  StateWithTickerProvider createState() => StateWithTickerProvider();
 }
+
+class StateWithTickerProvider extends ComponentState<BotToastState>
+    with TickerProviderStateMixin {}

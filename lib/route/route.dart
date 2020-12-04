@@ -4,7 +4,9 @@ import 'package:flutter_starter/app.dart';
 import 'package:flutter_starter/global_store/state.dart';
 import 'package:flutter_starter/global_store/store.dart';
 import 'package:flutter_starter/page/article/page.dart';
-import 'package:flutter_starter/page/demos/bottoast/page.dart';
+import 'package:flutter_starter/page/demos/base_components/page.dart';
+import 'package:flutter_starter/page/demos/bot_toast/page.dart';
+import 'package:flutter_starter/page/demos/city_pickers/page.dart';
 import 'package:flutter_starter/page/demos/page.dart';
 import 'package:flutter_starter/page/demos/staggered/page.dart';
 import 'package:flutter_starter/page/home/page.dart';
@@ -53,6 +55,10 @@ class RouteManager {
   static const String demoStaggeredPage = 'page/demo/staggered';
   /// Demos 开发示例 Toast
   static const String demoToastPage = 'page/demo/toast';
+  /// Demos 开发示例 城市选择
+  static const String demoCityPickersPage = 'page/demo/citypickers';
+  /// Demos 开发示例 基础组件
+  static const String demoBaseComponentsPage = 'page/demo/basecomponents';
   /// /////////////////////////////////////////////////////////////////////
 
   static final AbstractRoutes routes = PageRoutes(
@@ -71,6 +77,8 @@ class RouteManager {
       RouteManager.demosPage: DemosPage(),
       RouteManager.demoStaggeredPage: StaggeredPage(),
       RouteManager.demoToastPage: BotToastPage(),
+      RouteManager.demoCityPickersPage: CityPickersPage(),
+      RouteManager.demoBaseComponentsPage: BaseComponentsPage(),
       /// /////////////////////////////////////////////////////////////////////
     },
     visitor: (String path, Page<Object, dynamic> page) {

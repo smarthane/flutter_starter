@@ -61,14 +61,14 @@ Widget buildView(DemosState state, Dispatch dispatch, ViewService viewService) {
                             new Text(
                               state.itemList[index].title,
                               style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.normal,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
                                   color: themeData.accentColor),
                             ),
                             new Text(
                               state.itemList[index].subTitle,
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 8,
                                   fontWeight: FontWeight.normal,
                                   color: themeData.accentColor),
                             ),
@@ -81,7 +81,7 @@ Widget buildView(DemosState state, Dispatch dispatch, ViewService viewService) {
               ),
             ),
           )),
-          staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
+          staggeredTileBuilder: (int index) => new StaggeredTile.fit(1),
           mainAxisSpacing: 2.0,
           crossAxisSpacing: 2.0,
         ),

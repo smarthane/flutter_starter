@@ -1,5 +1,8 @@
 name: flutter_starter
 description: A new Flutter framework application.
+# 🔥👍基于fish_redux的纯flutter快速开发框架。框架集成黑夜模式、多色彩主题、国际化、切换字体、优美动画，
+# 以及各种常见的、丰富的开发示例。可以让你快速的上手开发一个移动应用APP(Android\iOS)。
+# https://github.com/smarthane/flutter_starter
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -21,7 +24,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  # flutter SDK 1.17.3-stable
+  # flutter SDK >= 1.17.3-stable
   flutter:
     sdk: flutter
   # flutter intl 国际化支持
@@ -87,10 +90,20 @@ dependencies:
   # A cross platform plugin for displaying local notifications.
   # https://github.com/MaikuB/flutter_local_notifications
   flutter_local_notifications: ^3.0.1+6
+  ################################################################################################
+  ################################################################################################
+  # Demo示例
   # 瀑布流 A Flutter staggered grid view which supports multiple columns with rows of varying sizes.
   # https://github.com/letsar/flutter_staggered_grid_view
   flutter_staggered_grid_view: ^0.3.2
-
+  # 城市选择器
+  # https://github.com/hanxu317317/city_pickers
+  city_pickers: ^0.2.0
+  # Highly customizable, feature-packed Flutter Calendar with gestures, animations and multiple formats.
+  # https://github.com/aleksanderwozniak/table_calendar
+  # table_calendar: ^2.3.1
+  ################################################################################################
+  ################################################################################################
 dev_dependencies:
   flutter_test:
     sdk: flutter
