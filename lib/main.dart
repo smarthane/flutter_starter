@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' hide Action, Page;
 import 'package:flutter/services.dart';
+import 'package:flutter_starter/common/app_manager.dart';
 import 'package:flutter_starter/common/storage_manager.dart';
 import 'package:flutter_starter/route/route.dart';
 
@@ -34,6 +35,6 @@ void startApp() async {
 Future _initializationComponents() async {
   await StorageManager.init();
   await NotificationsManager.init();
-
+  await AppManager.init();
   return Future.value(true);
 }

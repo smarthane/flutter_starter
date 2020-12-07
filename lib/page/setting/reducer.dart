@@ -14,7 +14,6 @@ Reducer<SettingState> buildReducer() {
   return asReducer(
     <Object, Reducer<SettingState>>{
       SettingAction.SWITCH_WEBVIEW_MODE: _onSwitchWebviewMode,
-      SettingAction.action: _onAction,
     },
   );
 }

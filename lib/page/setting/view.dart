@@ -2,6 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/cupertino.dart' hide Action;
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_starter/generated/l10n.dart';
+import 'package:flutter_starter/util/version_update_utils.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -53,7 +54,9 @@ Widget buildView(
               color: state.store.themeModel.themeData.cardColor,
               child: ListTile(
                 title: Text(S.of(viewService.context).rate),
-                onTap: () {},
+                onTap: () {
+                  dispatch(SettingActionCreator.onOpenWebviewPage("smarthane", "https://github.com/smarthane"));
+                },
                 leading: Icon(
                   Icons.star,
                   color: accentColor,
@@ -68,7 +71,9 @@ Widget buildView(
               color: state.store.themeModel.themeData.cardColor,
               child: ListTile(
                 title: Text(S.of(viewService.context).feedback),
-                onTap: () {},
+                onTap: () {
+                  dispatch(SettingActionCreator.onOpenFeedbackPage());
+                },
                 leading: Icon(
                   Icons.feedback,
                   color: accentColor,
@@ -83,7 +88,9 @@ Widget buildView(
               color: state.store.themeModel.themeData.cardColor,
               child: ListTile(
                 title: Text(S.of(viewService.context).versionUpdate),
-                onTap: () {},
+                onTap: () {
+                  VersionUpdateUtils.check(viewService.context);
+                },
                 leading: Icon(
                   Icons.system_update,
                   color: accentColor,
@@ -98,7 +105,9 @@ Widget buildView(
               color: state.store.themeModel.themeData.cardColor,
               child: ListTile(
                 title: Text(S.of(viewService.context).aboutme),
-                onTap: () {},
+                onTap: () {
+                  dispatch(SettingActionCreator.onOpenAboutMePage());
+                },
                 leading: Icon(
                   Icons.account_box,
                   color: accentColor,

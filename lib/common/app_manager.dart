@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter/generated/l10n.dart';
+import 'package:package_info/package_info.dart';
 
 /// @Author: smarthane
 /// @GitHub: https://github.com/smarthane
 /// @Description:
 /// @Date: 2020/11/29
+
+/// 应用管理
+class AppManager {
+  /// 应用包信息
+  static PackageInfo packageInfo;
+
+  static init() async {
+    packageInfo = await PackageInfo.fromPlatform();
+  }
+}
 
 /// 全局配置
 class Config {}

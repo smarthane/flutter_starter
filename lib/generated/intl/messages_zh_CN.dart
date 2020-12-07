@@ -21,7 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-    "aboutme" : MessageLookupByLibrary.simpleMessage("关于我"),
+    "aboutme" : MessageLookupByLibrary.simpleMessage("❤关于我"),
     "actionCancel" : MessageLookupByLibrary.simpleMessage("取消"),
     "actionConfirm" : MessageLookupByLibrary.simpleMessage("确认"),
     "appName" : MessageLookupByLibrary.simpleMessage("FlutterStarter"),
