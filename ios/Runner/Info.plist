@@ -43,5 +43,15 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSAppTransportSecurity</key>
+	<dict><key>NSAllowsArbitraryLoads</key><true/></dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>FlutterStarter</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>FlutterStarter</string>
+	<key>NSCameraUsageDescription</key>
+	<string>FlutterStarter</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>FlutterStarter</string>
 </dict>
 </plist>
