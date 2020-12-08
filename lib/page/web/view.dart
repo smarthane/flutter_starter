@@ -28,6 +28,7 @@ Widget _buildWebView(
   var themeData = state.store.themeModel.themeData;
   return Scaffold(
     appBar: AppBar(
+      centerTitle: true,
       title: Row(
         children: <Widget>[
           FutureBuilder<bool>(
@@ -139,6 +140,7 @@ Widget _buildWebViewPlugin(
     displayZoomControls: true,
     withZoom: true,
     appBar: AppBar(
+      centerTitle: true,
       title: Row(
         children: <Widget>[
           FutureBuilder<bool>(

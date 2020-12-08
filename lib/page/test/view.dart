@@ -13,6 +13,7 @@ Widget buildView(TestState state, Dispatch dispatch, ViewService viewService) {
   var themeData = state.store.themeModel.themeData;
   return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("Test"),
       ),
       body: Text(""));

@@ -1,5 +1,7 @@
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_starter/util/toast_utils.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 /// @Author: smarthane
 /// @GitHub: https://github.com/smarthane
@@ -20,19 +22,23 @@ class NotificationsManager {
   }
 
   static Future _onSelectNotification(String payload) {
-
+    /// 点击 路由到 具体页面
+    ToastUtils.showText(payload);
   }
 
-  showNotification() async {
-    var android = new AndroidNotificationDetails(
-        'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
-        priority: Priority.high,importance: Importance.max
-    );
-    var iOS = new IOSNotificationDetails();
-    var platform = new NotificationDetails(android: android, iOS: iOS);
-    await flutterLocalNotificationsPlugin.show(
-        0, 'New Video is out', 'Flutter Local Notification', platform,
-        payload: 'Nitish Kumar Singh is part time Youtuber');
+  static showNotification(Object payload) async {
+    /// 得有 权限 才能弹
+    if(await Permission.notification.request().isGranted) {
+      var android = new AndroidNotificationDetails(
+          'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
+          priority: Priority.high,importance: Importance.max
+      );
+      var iOS = new IOSNotificationDetails();
+      var platform = new NotificationDetails(android: android, iOS: iOS);
+      await flutterLocalNotificationsPlugin.show(
+          0, 'New Video is out', 'Flutter Local Notification', platform,
+          payload: 'Nitish Kumar Singh is part time Youtuber');
+    }
   }
 
 }

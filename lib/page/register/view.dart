@@ -22,6 +22,7 @@ Widget buildView(
       physics: ClampingScrollPhysics(),
       slivers: <Widget>[
         SliverAppBar(
+          centerTitle: true,
           title: Text(S.of(viewService.context).signUp),
           floating: true,
         ),

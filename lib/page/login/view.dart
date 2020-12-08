@@ -27,6 +27,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
       physics: ClampingScrollPhysics(),
       slivers: <Widget>[
         SliverAppBar(
+          centerTitle: true,
           title: Text(S.of(viewService.context).signIn),
           floating: true,
         ),

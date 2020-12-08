@@ -12,6 +12,7 @@ Widget buildView(
     AboutMeState state, Dispatch dispatch, ViewService viewService) {
   return Scaffold(
     appBar: AppBar(
+      centerTitle: true,
       title: Text(S.of(viewService.context).aboutme),
     ),
     body: Column(

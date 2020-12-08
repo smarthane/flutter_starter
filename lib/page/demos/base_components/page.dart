@@ -5,6 +5,11 @@ import 'reducer.dart';
 import 'state.dart';
 import 'view.dart';
 
+/// @Author: smarthane
+/// @GitHub: https://github.com/smarthane
+/// @Description:
+/// @Date: 2020/11/29
+
 class BaseComponentsPage extends Page<BaseComponentsState, Map<String, dynamic>> {
   BaseComponentsPage()
       : super(

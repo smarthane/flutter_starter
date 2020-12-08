@@ -48,6 +48,7 @@ Widget buildView(
     var themeData = IGlobalStore.ofThemeData(viewService.context);
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Stack(
           children: [
             Align(

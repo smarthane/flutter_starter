@@ -8,6 +8,7 @@ Widget buildView(ImagePickersState state, Dispatch dispatch, ViewService viewSer
   var themeData = state.store.themeModel.themeData;
   return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("图片选择器"),
       ),
       body: ListView.builder(

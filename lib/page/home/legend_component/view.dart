@@ -45,7 +45,7 @@ Widget buildView(
   /// 数据不为控显示数据
   if (state.tabViewStateModel.isSuccess) {
     return Scaffold(
-        appBar: AppBar(title: _buildTabBar(state, dispatch, viewService)),
+        appBar: AppBar(centerTitle: true, title: _buildTabBar(state, dispatch, viewService)),
         body: _buildTabBarView(state, dispatch, viewService));
   }
 }

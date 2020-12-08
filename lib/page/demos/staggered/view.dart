@@ -43,6 +43,7 @@ Widget buildView(
   var themeData = state.store.themeModel.themeData;
   return Scaffold(
     appBar: AppBar(
+      centerTitle: true,
       title: Text("瀑布流示例"),
     ),
     body: Padding(

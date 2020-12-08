@@ -18,6 +18,7 @@ Widget buildView(
   var primaryColor = state.store.themeModel.themeData.primaryColor;
   return Scaffold(
     appBar: AppBar(
+      centerTitle: true,
       title: Text(S.of(viewService.context).appSetting),
     ),
     body: SingleChildScrollView(

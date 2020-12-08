@@ -20,6 +20,7 @@ Widget buildView(
   var themeData = state.store.themeModel.themeData;
   return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("城市选择器"),
       ),
       body: ListView.builder(
