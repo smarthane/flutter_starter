@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_starter/common/app_manager.dart';
 import 'package:flutter_starter/common/resource_mananger.dart';
 import 'package:flutter_starter/generated/l10n.dart';
 import 'package:lottie/lottie.dart';
@@ -16,6 +15,10 @@ import 'state.dart';
 
 Widget buildView(
     SplashState state, Dispatch dispatch, ViewService viewService) {
+  /// 设置适配尺寸 (填入设计稿中设备的屏幕尺寸)
+  /// 注意放置位置 必须在materalapp home
+  /// ???
+  Config.screen(viewService.context);
   return Scaffold(
     body: WillPopScope(
       onWillPop: () => Future.value(false),

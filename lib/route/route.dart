@@ -1,4 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/cupertino.dart' hide Action, Page;
 import 'package:flutter/material.dart' hide Action, Page;
 import 'package:flutter_starter/app.dart';
 import 'package:flutter_starter/global_store/state.dart';
@@ -19,6 +20,7 @@ import 'package:flutter_starter/page/setting/page.dart';
 import 'package:flutter_starter/page/splash/page.dart';
 import 'package:flutter_starter/page/web/page.dart';
 import 'package:flutter_starter/util/log_utils.dart';
+import 'package:flutter_starter/widget/widget_pageroute_anim.dart';
 
 /// @Author: smarthane
 /// @GitHub: https://github.com/smarthane
@@ -164,6 +166,25 @@ class RouteManager {
   static void openWebViewPage({@required String url, String title = ""}) {
     FsNavigatorObserver.fsNavigator.pushNamed(RouteManager.webViewPage,
         arguments: {"title": title, "url": url});
+  }
+
+  /// 页面路由拦截
+  static PageRoute pageRouteFilter(RouteSettings settings) {
+    /// TODO 此处可做一些如某些页面必须登录的情况，可以进行拦截，跳转到登录。
+    LogUtils.v("pageRouteFilter: page name --> ${settings.name}");
+    /// 无页面切换动画
+    if (settings.name == RouteManager.appPage ||
+        settings.name == RouteManager.splashPage ||
+        settings.name == RouteManager.webViewPage) {
+      return NoAnimRouteBuilder(
+          RouteManager.routes.buildPage(settings.name, settings.arguments));
+    } else {
+      /// ios页面切换风格
+      return CupertinoPageRoute(builder: (BuildContext context) {
+        return RouteManager.routes
+            .buildPage(settings.name, settings.arguments);
+      });
+    }
   }
 }
 

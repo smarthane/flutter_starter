@@ -7,7 +7,7 @@ import 'package:flutter_starter/broadcast/action.dart';
 import 'package:flutter_starter/common/notifications_manager.dart';
 import 'package:flutter_starter/global_store/state.dart';
 import 'package:flutter_starter/route/route.dart';
-import 'package:flutter_starter/widget/widget_pageroute_anim.dart';
+import 'package:flutter_starter/util/log_utils.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'generated/l10n.dart';
@@ -27,7 +27,9 @@ Effect<AppState> buildEffect() {
 }
 
 /// 初始化应用相关
-void _onInitState(Action action, Context<AppState> ctx) {}
+void _onInitState(Action action, Context<AppState> ctx) {
+  LogUtils.v(" App onInitState ------ > success");
+}
 
 /// 接收弹出 应用 内 消息通知
 void _receiveNotifyAppNotification(Action action, Context<AppState> ctx) {
@@ -96,6 +98,7 @@ class AppPage extends Page<AppState, Map<String, dynamic>> {
 
 /// view
 Widget buildView(AppState state, Dispatch dispatch, ViewService viewService) {
+  LogUtils.v(" App buildView ------ > success");
   return MaterialApp(
     title: "",
 
@@ -111,19 +114,7 @@ Widget buildView(AppState state, Dispatch dispatch, ViewService viewService) {
 
     /// 路由
     onGenerateRoute: (RouteSettings settings) {
-      /// 无页面切换动画
-      if (settings.name == RouteManager.appPage ||
-          settings.name == RouteManager.splashPage ||
-          settings.name == RouteManager.webViewPage) {
-        return NoAnimRouteBuilder(
-            RouteManager.routes.buildPage(settings.name, settings.arguments));
-      } else {
-        /// ios页面切换风格
-        return CupertinoPageRoute(builder: (BuildContext context) {
-          return RouteManager.routes
-              .buildPage(settings.name, settings.arguments);
-        });
-      }
+      return RouteManager.pageRouteFilter(settings);
     },
 
     /// 国际化

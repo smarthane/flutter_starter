@@ -119,6 +119,10 @@ dependencies:
   # Android: minSdkVersion 19 targetSdkVersion 29 compileSdkVersion 29
   # 1.0.8 flutter sdk >= 1.20.0 可以根据自己的工程需求选择最新版本
   image_pickers: ^1.0.7
+  # 屏幕适配
+  # A flutter plugin for adapting screen and font size.Let your UI display a reasonable layout on different screen sizes!
+  # https://github.com/OpenFlutter/flutter_screenutil/
+  flutter_screenutil: ^3.2.0
   ################################################################################################
   ################################################################################################
 dev_dependencies:

@@ -27,7 +27,7 @@ class VersionUpdateUtils {
     _dialog = UpdateDialog.showUpdate(context,
         title: "是否升级到2.0.0版本？",
         updateContent:
-            "新版本大小:10.0M\n1.又双叒修复了一大堆bug;\n2.祭天了多名程序猿;\n3.秃顶程序猿：“更了个寂寞”;\n4.更新前，你嘲笑我的bug。更新后，我让你高攀不起！",
+            "新版本大小:10.0M\n0.此升级为弹窗演示例子;\n1.又双叒修复了一大堆bug;\n2.祭天了多名程序猿;\n3.秃顶程序猿：“更了个寂寞”;\n4.更新前，你嘲笑我的bug。更新后，我让你高攀不起！",
         isForce: false,
         updateButtonText: '升级',
         ignoreButtonText: '忽略此版本',
