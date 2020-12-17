@@ -27,7 +27,7 @@
 
 | Fish Redux Architecture | Flutter Starter Architecture |
 | :----: |:----: |
-| <img src="docs/images/fish_redux_architecture.jpg" width="320" height="568">|<img src="docs/images/flutter_starter_architecture.jpg" width="320" height="568">|
+| <img src="docs/images/fish_redux_architecture.png" width="320" height="568">|<img src="docs/images/flutter_starter_architecture.png" width="320" height="568">|
 
 ### :1st_place_medal: 三、应用截图
 | 描述 | 描述 | 描述 |
