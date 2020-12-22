@@ -11,6 +11,7 @@ import 'package:flutter_starter/page/demos/bot_toast/page.dart';
 import 'package:flutter_starter/page/demos/city_pickers/page.dart';
 import 'package:flutter_starter/page/demos/image_pickers/page.dart';
 import 'package:flutter_starter/page/demos/page.dart';
+import 'package:flutter_starter/page/demos/sqlite/page.dart';
 import 'package:flutter_starter/page/demos/staggered/page.dart';
 import 'package:flutter_starter/page/feedback/page.dart';
 import 'package:flutter_starter/page/home/page.dart';
@@ -69,6 +70,8 @@ class RouteManager {
   static const String demoImagePickersPage = 'page/demo/imagepickers';
   /// Demos 开发示例 基础组件
   static const String demoBaseComponentsPage = 'page/demo/basecomponents';
+  /// Demos 开发示例 SQLite
+  static const String demoSqlitePage = 'page/demo/sqlite';
   /// /////////////////////////////////////////////////////////////////////
 
   /// 路由配置
@@ -93,6 +96,7 @@ class RouteManager {
       RouteManager.demoCityPickersPage: CityPickersPage(),
       RouteManager.demoImagePickersPage: ImagePickersPage(),
       RouteManager.demoBaseComponentsPage: BaseComponentsPage(),
+      RouteManager.demoSqlitePage: SqlitePage(),
       /// /////////////////////////////////////////////////////////////////////
     },
     visitor: (String path, Page<Object, dynamic> page) {

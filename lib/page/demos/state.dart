@@ -66,6 +66,12 @@ List<DemoItemModel> _initDemoList() {
       pageRoute: RouteManager.demoToastPage));
 
   itemList.add(DemoItemModel(
+      imageUrl:ResourceHelper.wrapAssets("demo_bottoast_icon.png"),
+      title: "SQLite",
+      subTitle: "SQLite operate",
+      pageRoute: RouteManager.demoSqlitePage));
+
+  itemList.add(DemoItemModel(
       imageUrl:ResourceHelper.wrapAssets("demo_citypicker_icon.png"),
       title: "城市选择",
       subTitle: "City Pickers",
