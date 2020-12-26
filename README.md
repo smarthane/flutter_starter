@@ -20,7 +20,9 @@
 - gitee:[https://gitee.com/smarthane/flutter_starter](https://gitee.com/smarthane/flutter_starter)
   <br/>
 - 如README.md中的图片在github中显示不出来，可以查看gitee，两个仓库代码已经同步！！！
-- 此工程为纯flutter开发框架，如项目想进行混合开发达到与原生工程完全解耦(打包成AAR方案)，可以参考本人开源的另外一个项目[flutter_component](https://github.com/smarthane/flutter_component)：（一个将 Flutter 工程打包成 aar 的组件化工程，让安卓原生工程可以进行快速的flutter混合开发。）
+- 此工程为纯flutter开发框架，如项目想进行混合开发达到与原生工程完全解耦(目前只支持安卓打包成aar方案,iOS的pod方式依赖后面也会支持！)，可以参考本人开源的另外一个项目[flutter_component](https://github.com/smarthane/flutter_component)：（一个将
+  Flutter 工程打包成 aar
+  的组件化工程，让安卓原生工程可以进行快速的flutter混合开发。）
 
 ### :computer: 一、【项目介绍】
 
@@ -35,24 +37,24 @@
 
 | Fish Redux Architecture | Flutter Starter Architecture |
 | :----: |:----: |
-| <img src="docs/images/fish_redux_architecture.png" width="320" height="568">|<img src="docs/images/flutter_starter_architecture.png" width="320" height="568">|
+| <img src="docs/images/fish_redux_architecture.png" width="320" height="480">|<img src="docs/images/flutter_starter_architecture.png" width="320" height="480">|
 
 ### :computer: 三、【应用截图】
-| 描述 | 描述 | 描述 |
+| 启动页动画 | 登录注册页 | 黑夜模式 |
 | :----: | :----: |:----: |
-| <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> | <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> | <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> |
+| <img src="docs/images/flutter_starter_snapshot_splash.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_login.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_switchmode.gif" width="320" height="480"> |
 
-| 描述 | 描述 | 描述 |
+| 切换字体 | 切换语言 | 切换主题 |
 | :----: | :----: |:----: |
-| <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> | <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> | <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> |
+| <img src="docs/images/flutter_starter_snapshot_switchfont.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_switchlanguage.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_switchtheme.gif" width="320" height="480"> |
 
-| 描述 | 描述 | 描述 |
+| 设置页 | 首页 | 文章详情 |
 | :----: | :----: |:----: |
-| <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> | <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> | <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> |
+| <img src="docs/images/flutter_starter_snapshot_settings.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_home.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_webview.gif" width="320" height="480"> |
 
-| 描述 | 描述 | 描述 |
-| :----: | :----: |:----: |
-| <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> | <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> | <img src="docs/images/fish_redux_architecture.png" width="320" height="568"> |
+| 开发示例 |
+| :----: |
+| <img src="docs/images/flutter_starter_snapshot_demos.gif" width="320" height="480"> |
 
 开源不易，麻烦给个Star⭐️吧！我会根据大家的关注度和个人时间持续更新代码！我们一起共同学习进步！
 
@@ -129,7 +131,6 @@ flutter_starter
 - [flutter-notebook](https://github.com/OpenFlutter/Flutter-Notebook)
 - [awesome-flutter](https://github.com/Solido/awesome-flutter)
 - [flutter-do](https://github.com/781238222/flutter-do)
-- 
 - ......
 ### :flipper: 九、【License】
 MIT<br/>
