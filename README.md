@@ -14,7 +14,7 @@
   </p>
 </p>
 
-### :cat: 【Flutter Starter】
+### :cat: 0、【Flutter Starter】
 - github:[https://github.com/smarthane/flutter_starter](https://github.com/smarthane/flutter_starter)
   <br/>
 - gitee:[https://gitee.com/smarthane/flutter_starter](https://gitee.com/smarthane/flutter_starter)
@@ -37,24 +37,24 @@
 
 | Fish Redux Architecture | Flutter Starter Architecture |
 | :----: |:----: |
-| <img src="docs/images/fish_redux_architecture.png" width="320" height="480">|<img src="docs/images/flutter_starter_architecture.png" width="320" height="480">|
+| <img src="docs/images/fish_redux_architecture.png" width="300" height="400">|<img src="docs/images/flutter_starter_architecture.png" width="300" height="400">|
 
 ### :computer: 三、【应用截图】
 | 启动页动画 | 登录注册页 | 黑夜模式 |
 | :----: | :----: |:----: |
-| <img src="docs/images/flutter_starter_snapshot_splash.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_login.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_switchmode.gif" width="320" height="480"> |
+| <img src="docs/images/flutter_starter_snapshot_splash.gif" width="300" height="400"> | <img src="docs/images/flutter_starter_snapshot_login.gif" width="300" height="400"> | <img src="docs/images/flutter_starter_snapshot_switchmode.gif" width="300" height="400"> |
 
 | 切换字体 | 切换语言 | 切换主题 |
 | :----: | :----: |:----: |
-| <img src="docs/images/flutter_starter_snapshot_switchfont.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_switchlanguage.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_switchtheme.gif" width="320" height="480"> |
+| <img src="docs/images/flutter_starter_snapshot_switchfont.gif" width="300" height="400"> | <img src="docs/images/flutter_starter_snapshot_switchlanguage.gif" width="300" height="400"> | <img src="docs/images/flutter_starter_snapshot_switchtheme.gif" width="300" height="400"> |
 
 | 设置页 | 首页 | 文章详情 |
 | :----: | :----: |:----: |
-| <img src="docs/images/flutter_starter_snapshot_settings.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_home.gif" width="320" height="480"> | <img src="docs/images/flutter_starter_snapshot_webview.gif" width="320" height="480"> |
+| <img src="docs/images/flutter_starter_snapshot_settings.gif" width="300" height="400"> | <img src="docs/images/flutter_starter_snapshot_home.gif" width="300" height="400"> | <img src="docs/images/flutter_starter_snapshot_webview.gif" width="300" height="400"> |
 
 | 开发示例 |
 | :----: |
-| <img src="docs/images/flutter_starter_snapshot_demos.gif" width="320" height="480"> |
+| <img src="docs/images/flutter_starter_snapshot_demos.gif" width="300" height="400"> |
 
 开源不易，麻烦给个Star⭐️吧！我会根据大家的关注度和个人时间持续更新代码！我们一起共同学习进步！
 
