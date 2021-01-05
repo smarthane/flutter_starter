@@ -24,6 +24,10 @@
   Flutter 工程打包成 aar
   的组件化工程，让安卓原生工程可以进行快速的flutter混合开发。）
 
+| 扫码下载 |
+| :----:|
+|<img src="docs/images/flutter_starter_download_qrcode.png" width="96" height="96">|
+
 ### :computer: 一、【项目介绍】
 
 - 当前代码的Flutter SDK 版本：1.17.3-stable（flutter SDK >= 1.17.3-stable目前都支持建议可以用最新的SDK版本）。
@@ -52,9 +56,9 @@
 | :----: | :----: |:----: |
 | <img src="docs/images/flutter_starter_snapshot_settings.gif" width="300" height="400"> | <img src="docs/images/flutter_starter_snapshot_home.gif" width="300" height="400"> | <img src="docs/images/flutter_starter_snapshot_webview.gif" width="300" height="400"> |
 
-| 开发示例 |
-| :----: |
-| <img src="docs/images/flutter_starter_snapshot_demos.gif" width="300" height="400"> |
+| 开发示例 | 开发示例 | 开发示例 |
+| :----: | :----: | :----: |
+| <img src="docs/images/flutter_starter_snapshot_demos.gif" width="300" height="400"> | <img src="docs/images/flutter_starter_snapshot_demos.gif" width="300" height="400"> | <img src="docs/images/flutter_starter_snapshot_demos.gif" width="300" height="400"> |
 
 开源不易，麻烦给个Star⭐️吧！我会根据大家的关注度和个人时间持续更新代码！我们一起共同学习进步！
 
