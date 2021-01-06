@@ -7,7 +7,7 @@
   </a>
   <h3 align="center">Flutter Starter</h3>
   <p align="center">
-    🔥👍基于fish_redux的纯flutter快速开发框架。框架集成黑夜模式、多色彩主题、国际化、切换字体、优美动画，以及各种常见的、丰富的开发示例。可以让你快速的上手开发一个移动应用APP(Android\iOS)。希望和大家共同成长，喜欢的话，欢迎start或fork!
+    🔥👍基于fish_redux的纯flutter快速开发框架。框架集成黑夜模式、多色彩主题、国际化、切换字体、优美动画，以及各种常见的、丰富的开发示例。可以让你快速的上手开发一个移动应用APP(Android\iOS)。希望和大家共同成长，喜欢的话，欢迎star或fork!
     <br/>
     <br/>
     <br/>
@@ -24,9 +24,9 @@
   Flutter 工程打包成 aar
   的组件化工程，让安卓原生工程可以进行快速的flutter混合开发。）
 
-| 扫码下载 |
+| 安卓-扫码下载 |
 | :----:|
-|<img src="docs/images/flutter_starter_download_qrcode.png" width="96" height="96">|
+|<img src="docs/images/flutter_starter_download_qrcode.png" width="128" height="128">|
 
 ### :computer: 一、【项目介绍】
 
